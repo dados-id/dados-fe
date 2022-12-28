@@ -6,7 +6,6 @@ module.exports = {
   "**/*.(ts|tsx|js)": filenames => [
     `yarn eslint ${filenames.join(" ")}`,
     `yarn prettier --write ${filenames.join(" ")}`
-    // `yarn lint`
   ],
 
   // Prettify only Markdown and JSON files
