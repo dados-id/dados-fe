@@ -1,36 +1,37 @@
 {
-  "name": "dados-fe",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.7.7",
-    "@next/font": "13.1.1",
-    "@svgr/webpack": "^6.5.1",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.26",
-    "@types/react-dom": "18.0.10",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.1.1",
-    "lint-staged": "^13.1.0",
-    "next": "13.1.1",
-    "next-react-svg": "1.1.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "4.9.4"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.2",
-    "postcss": "^8.4.20",
-    "prettier": "^2.8.1",
-    "tailwindcss": "^3.2.4"
-  }
+    "name": "dados-fe",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@fontsource/hauora-sans": "^4.5.3",
+        "@headlessui/react": "^1.7.7",
+        "@next/font": "13.1.1",
+        "@svgr/webpack": "^6.5.1",
+        "@types/node": "18.11.18",
+        "@types/react": "18.0.26",
+        "@types/react-dom": "18.0.10",
+        "eslint": "8.30.0",
+        "eslint-config-next": "13.1.1",
+        "lint-staged": "^13.1.0",
+        "next": "13.1.1",
+        "next-react-svg": "1.1.3",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "typescript": "4.9.4"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.13",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.2",
+        "postcss": "^8.4.20",
+        "prettier": "^2.8.1",
+        "tailwindcss": "^3.2.4"
+    }
 }

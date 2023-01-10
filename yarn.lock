@@ -1010,6 +1010,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/hauora-sans@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/hauora-sans/-/hauora-sans-4.5.3.tgz#1e0b4c608cb3919b9f5c17a9699b60bd013ef843"
+  integrity sha512-vPvMQ/sdHR6wkbHa+W0WSu02AVk9n81DBU9cAUXRSef/MhNijS3h8gTCANpfYSeYwxOgRdzHmN9e5rPlSIRxZg==
+
 "@headlessui/react@^1.7.7":
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.7.tgz#d6f8708d8943ae8ebb1a6929108234e4515ac7e8"
