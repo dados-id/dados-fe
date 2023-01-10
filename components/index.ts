@@ -1,2 +1,5 @@
-export * from "./Navbar"
-export * from "./Footer"
+export * from "./navbar"
+export * from "./footer"
+export * from "./typography"
+export * from "./button"
+export * from "./input-field"
