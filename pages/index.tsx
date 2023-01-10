@@ -17,9 +17,10 @@ export default function Home() {
             </Head>
             <Header preset="h1">tes</Header>
             <Body preset="p1" className="">
-                hello
+                hello lorem ipsum
             </Body>
-            <Button preset="primary">hello</Button>
+
+            <Button preset="primary">hello lorem ipsum</Button>
         </>
     )
 }
