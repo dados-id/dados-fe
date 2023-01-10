@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Header, Body, Button, InputField, SelectField } from "@components"
+import { Header, Body, Button } from "@components"
 export default function Home() {
     return (
         <>
