@@ -16,7 +16,9 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header preset="h1">tes</Header>
-            <Body preset="p1">hello</Body>
+            <Body preset="p1" className="">
+                hello
+            </Body>
         </>
     )
 }
