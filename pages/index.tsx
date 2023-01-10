@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Header, Body } from "@components"
+import { Header, Body, Button } from "@components"
 export default function Home() {
     return (
         <>
@@ -19,6 +19,7 @@ export default function Home() {
             <Body preset="p1" className="">
                 hello
             </Body>
+            <Button preset="primary">hello</Button>
         </>
     )
 }
