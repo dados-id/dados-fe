@@ -9,6 +9,9 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@chakra-ui/react": "^2.4.6",
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
         "@fontsource/hauora-sans": "^4.5.3",
         "@headlessui/react": "^1.7.7",
         "@next/font": "13.1.1",
@@ -18,6 +21,8 @@
         "@types/react-dom": "18.0.10",
         "eslint": "8.30.0",
         "eslint-config-next": "13.1.1",
+        "formik": "^2.2.9",
+        "framer-motion": "^8.3.3",
         "lint-staged": "^13.1.0",
         "next": "13.1.1",
         "next-react-svg": "1.1.3",
