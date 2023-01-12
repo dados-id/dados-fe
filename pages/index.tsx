@@ -1,6 +1,16 @@
 import Head from "next/head"
 import { Header, Body, Button } from "@components"
+import { useToast } from "@chakra-ui/react"
 export default function Home() {
+    const toast = useToast()
+    // const successToast = Toast({
+    //     preset: "success",
+    //     message: "Berhasil login",
+    // })
+    // const errorToast = Toast({
+    //     preset: "error",
+    //     message: "Akun tidak ditemukan. Pastikan username dan password benar",
+    // })
     return (
         <>
             <Head>
@@ -19,8 +29,21 @@ export default function Home() {
             <Body preset="p1" className="">
                 hello lorem ipsum
             </Body>
-
-            <Button preset="primary">hello lorem ipsum</Button>
+            <div>e</div>
+            <Button
+                preset="primary"
+                onClick={() =>
+                    toast({
+                        title: "Account created.",
+                        description: "We've created your account for you.",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
+            >
+                hello lorem ipsum
+            </Button>
         </>
     )
 }
