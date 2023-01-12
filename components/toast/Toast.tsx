@@ -26,7 +26,7 @@ export const Toast = ({ preset, message }: ToastProps) => {
                 >
                     <>
                         {TOAST_PRESETS[preset].leftIcon}
-                        <Header preset="h5" className="font-bold">
+                        <Header preset="h6" className="font-bold">
                             {message}
                         </Header>
                         <button onClick={onClose}>
