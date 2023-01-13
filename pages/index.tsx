@@ -1,5 +1,6 @@
 import Head from "next/head"
-import { Header, Body, Button, Toast } from "@components"
+import { Header, Body, Button, Toast, Chip } from "@components"
+import { HomeIcon } from "@heroicons/react/24/outline"
 export default function Home() {
     const successToast = Toast({
         preset: "success",
@@ -41,6 +42,9 @@ export default function Home() {
             <Button preset="primary" onClick={() => warningToast()}>
                 warning toast
             </Button>
+            <Chip icon={HomeIcon} />
+            <br></br>
+            <Chip icon={HomeIcon}>hello</Chip>
         </>
     )
 }
