@@ -1,6 +1,19 @@
 import Head from "next/head"
-import { Header, Body, Button } from "@components"
+import { Header, Body, Button, Toast, Chip } from "@components"
+import { HomeIcon } from "@heroicons/react/24/outline"
 export default function Home() {
+    const successToast = Toast({
+        preset: "success",
+        message: "Success",
+    })
+    const errorToast = Toast({
+        preset: "error",
+        message: "Error",
+    })
+    const warningToast = Toast({
+        preset: "warning",
+        message: "Warning",
+    })
     return (
         <>
             <Head>
@@ -20,7 +33,18 @@ export default function Home() {
                 hello lorem ipsum
             </Body>
 
-            <Button preset="primary">hello lorem ipsum</Button>
+            <Button preset="primary" onClick={() => errorToast()}>
+                error toast
+            </Button>
+            <Button preset="primary" onClick={() => successToast()}>
+                success toast
+            </Button>
+            <Button preset="primary" onClick={() => warningToast()}>
+                warning toast
+            </Button>
+            <Chip icon={HomeIcon} />
+            <br></br>
+            <Chip icon={HomeIcon}>hello</Chip>
         </>
     )
 }

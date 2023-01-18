@@ -14,6 +14,7 @@
         "@emotion/styled": "^11.10.5",
         "@fontsource/hauora-sans": "^4.5.3",
         "@headlessui/react": "^1.7.7",
+        "@heroicons/react": "^2.0.13",
         "@next/font": "13.1.1",
         "@svgr/webpack": "^6.5.1",
         "@types/node": "18.11.18",
