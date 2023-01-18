@@ -93,8 +93,6 @@ export const Navbar = () => {
                 </svg>
                 )
               }
-
-
             </Button>
 
           </div>
@@ -126,8 +124,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-
-
     </>
   )
 }
