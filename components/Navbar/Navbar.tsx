@@ -8,7 +8,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Desktop */}
-      <div className="mobile:hidden tablet:hidden desktop:flex h-16 w-full bg-whipcream text-mariana flex-row items-center justify-between px-32">
+      <div className="mobile:hidden tablet:hidden desktop:flex h-16 w-full shadow-md bg-white text-mariana flex-row items-center justify-between px-32">
         {/* Logo */}
         <div className="flex flex-row gap-12">
           <Header preset="h5" >dados</Header>
@@ -38,7 +38,7 @@ export const Navbar = () => {
         </div>
       </div>
       {/* Tablet */}
-      <div className="mobile:hidden tablet:flex desktop:hidden h-16 w-full bg-whipcream text-mariana flex-row items-center justify-around">
+      <div className="mobile:hidden tablet:flex desktop:hidden h-16 w-full shadow-md bg-white text-mariana flex-row items-center justify-around">
         {/* Logo */}
         <div>
           <Header preset="h5" >dados</Header>
@@ -67,8 +67,8 @@ export const Navbar = () => {
         </div>
       </div>
       {/* Mobile */}
-      <div className="mobile:flex tablet:hidden w-full text-mariana flex-col">
-        <div className="bg-whipcream h-16 w-full flex flex-row items-center justify-between px-8">
+      <div className="mobile:flex tablet:hidden w-full text-mariana flex-col shadow-md">
+        <div className="bg-white h-16 w-full flex flex-row items-center justify-between px-8">
           {/* Logo */}
           <div>
             <Header preset="h2" >dados</Header>
@@ -100,7 +100,7 @@ export const Navbar = () => {
           </div>
         </div>
         <div className={`${menuOpen ? 'h-0 opacity-0': 'opacity-100 py-4'}
-           transition-height ease-in-out duration-500 px-8 bg-whipcream`}
+           transition-height ease-in-out duration-500 px-8 bg-white`}
           >
           <nav className="flex flex-col gap-8">
             <Header preset="h5"><Link href="/howto">How to Rate</Link></Header>
