@@ -54,41 +54,31 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         }
     }
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user: any) => {
             if (user) {
-                const current = auth.currentUser
-                if (current != null) {
-                    current
-                        .getIdToken(true)
-                        .then(function (idToken) {
-                            // Send token to your backend via HTTPS
-                            sessionStorage.setItem("idToken", idToken) // store token in session
-                            // axios
-                            //     .get(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
-                            //         headers: {
-                            //             Authorization: `Bearer ${idToken}`,
-                            //         },
-                            //     })
-                            //     .then((res) => {
-                            //         console.log(res)
-                            //     })
-                            //     .catch((err) => {
-                            //         console.log(err)
-                            //     })
-                            setToken(idToken)
-                        })
-                        .catch(function (error) {
-                            // Handle error
-                            // toast.error("Something went wrong. Try Again.")
-                        })
-                }
+                // Send token to your backend via HTTPS
+                // console.log(user.getIdToken(true))
+                sessionStorage.setItem("idToken", user.accessToken) // store token in session
+                // axios
+                //     .get(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
+                //         headers: {
+                //             Authorization: `Bearer ${user.accessToken}`,
+                //         },
+                //     })
+                //     .then((res) => {
+                //         console.log(res)
+                //     })
+                //     .catch((err) => {
+                //         console.log(err)
+                //     })
+                setToken(user.accessToken)
 
-                setUser({
-                    uid: user.uid,
-                    email: user.email,
-                    displayName: user.displayName,
-                })
-                // setUser(user)
+                // setUser({
+                //     uid: user.uid,
+                //     email: user.email,
+                //     displayName: user.displayName,
+                // })
+                setUser(user)
             } else {
                 setUser(null)
             }

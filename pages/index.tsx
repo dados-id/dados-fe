@@ -2,10 +2,10 @@ import Head from "next/head"
 import { Header, Body, Button, Toast, Chip } from "@components"
 import { HomeIcon } from "@heroicons/react/24/outline"
 import { useAuth } from "context/AuthContext"
-import { LayoutGroupContext } from "framer-motion"
+
 export default function Home() {
     const { googleSignIn, user, token, logout } = useAuth()
-    console.log(user)
+
     console.log(token)
     const successToast = Toast({
         preset: "success",
