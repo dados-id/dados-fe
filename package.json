@@ -23,6 +23,7 @@
         "eslint": "8.30.0",
         "eslint-config-next": "13.1.1",
         "firebase": "^9.15.0",
+        "fluentui-emoji": "^0.0.7",
         "formik": "^2.2.9",
         "framer-motion": "^8.3.3",
         "lint-staged": "^13.1.0",

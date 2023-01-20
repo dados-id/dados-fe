@@ -2328,7 +2328,7 @@
   dependencies:
     client-only "^0.0.1"
 
-"@heroicons/react@v2":
+"@heroicons/react@^2.0.13":
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/@heroicons/react/-/react-2.0.13.tgz#9b1cc54ff77d6625c9565efdce0054a4bcd9074c"
   integrity sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ==
@@ -3993,6 +3993,11 @@ flatted@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
+
+fluentui-emoji@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/fluentui-emoji/-/fluentui-emoji-0.0.7.tgz#0ec6630c2a4e892a053876e20d7ad01a25a853e3"
+  integrity sha512-SHVl9DiZ/NvDRVXHyoqVQYk5Gy+ybgqSUEvD98aRiojiepR61XAuyNVK4XTWctzW5ZjE9X/lt7aSSUyxV3ZHHA==
 
 focus-lock@^0.11.2:
   version "0.11.4"
