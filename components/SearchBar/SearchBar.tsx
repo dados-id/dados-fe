@@ -33,7 +33,7 @@ export const SearchBar = () => {
           </Button>
           <div className="w-[2px] h-10 bg-[#909090] rounded-full"></div>
         </div>
-        <input type="text" className="w-full outline-none placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`Search ${selectBy} Name`} />
+        <input type="text" className="w-full outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`Search ${selectBy} Name`} />
       </div>
       <div>
       </div>
@@ -56,7 +56,7 @@ export const SearchBar = () => {
         <Button 
           preset="link"
           padding="py-1" 
-          className="text-mariana w-full flex flex-row "
+          className="text-mariana w-3/4 flex flex-row hover:bg-whipcream "
           onClick={() => changeSelectBy("University/College")}
         >
           <div className="flex flex-row items-center justify-center gap-1">
