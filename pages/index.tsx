@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Header, Body, Button, Toast, Chip } from "@components"
+import { Header, Body, Button, Toast, Chip, SearchBar } from "@components"
 import { HomeIcon } from "@heroicons/react/24/outline"
 export default function Home() {
     const successToast = Toast({
@@ -45,6 +45,10 @@ export default function Home() {
             <Chip icon={HomeIcon} />
             <br></br>
             <Chip icon={HomeIcon}>hello</Chip>
+            <div className="items-center justify-center flex">
+            <SearchBar/>
+
+            </div>
         </>
     )
 }
