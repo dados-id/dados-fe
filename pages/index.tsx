@@ -1,7 +1,12 @@
 import Head from "next/head"
 import { Header, Body, Button, Toast, Chip, SearchBar } from "@components"
 import { HomeIcon } from "@heroicons/react/24/outline"
+import { useAuth } from "context/AuthContext"
+
 export default function Home() {
+    const { googleSignIn, user, token, logout } = useAuth()
+
+    console.log(token)
     const successToast = Toast({
         preset: "success",
         message: "Success",
@@ -49,6 +54,12 @@ export default function Home() {
             <SearchBar/>
 
             </div>
+            <Button preset="primary" onClick={async () => googleSignIn()}>
+                google
+            </Button>
+            <Button preset="primary" onClick={async () => logout()}>
+                logout
+            </Button>
         </>
     )
 }
