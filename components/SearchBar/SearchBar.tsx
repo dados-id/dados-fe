@@ -2,18 +2,20 @@ import { Header, Body, Button, } from "@components"
 import { useState } from "react";
 import University from "public/assets/images/university.svg"
 import Lecturer from "public/assets/images/lecturer.svg"
+import Dropdown from "./DropDown";
 
 export const SearchBar = () => {
   const [selectBy, setSelectBy] = useState("Lecturer")
   const [isOpened, setIsOpened] = useState(false);
-  
+  const [inputVal, setInputVal] = useState("")
+
   const changeSelectBy = (input: string) => {
     setSelectBy(input)
     setIsOpened(false)
   }
 
   return (
-    <div className="relative w-4/5 h-10 tablet:h-14 bg-white border-2 border-mariana rounded-full px-2 gap-2">
+    <div className={`${inputVal ? "rounded-[3rem] pb-4" : "rounded-full"} relative flex flex-col w-4/5 h-full bg-white border-2 border-mariana px-2 gap-21`}>
       <div className="flex flex-row items-center justify-between gap-2 h-full">
         <div className="flex flex-row w-1/2 tablet:w-1/4 h-full items-center justify-center">
           <Button 
@@ -31,12 +33,13 @@ export const SearchBar = () => {
             </div>
 
           </Button>
-          <div className="w-[2px] h-10 bg-[#909090] rounded-full"></div>
+          <div className="w-[2px] h-8 bg-[#909090] rounded-full"></div>
         </div>
-        <input type="text" className="w-full outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`Search ${selectBy} Name`} />
+        <input onInput={e => setInputVal((e.target as HTMLInputElement).value)} value={inputVal} type="text" className="w-full outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`Search ${selectBy} Name`} />
+        <div>
       </div>
-      <div>
       </div>
+      <Dropdown data={{status: "loading", searchString: inputVal, searchBy: selectBy}}/>
 
       {/* Dropdown */}
       <div 
