@@ -1,9 +1,8 @@
 import { Header, Body } from "@components"
-import SmilingFace from "@icons/ic_smiling_face.svg"
-import ThumbsUp from "@icons/ic_thumbs_up.svg"
-import FingerLove from "@icons/ic_finger_love.svg"
-import ThumbsDown from "@icons/ic_thumbs_down.svg"
-export const LandingText = () => {
+import SchoolIcon from "@icons/ic_school.svg"
+import BoltIcon from "@icons/ic_bolt.svg"
+import LecturerIcon from "@icons/ic_lecturer.svg"
+export const LandingText = ({ isProfessor }: { isProfessor: boolean }) => {
     return (
         <div className="mt-[10%]">
             <div className="flex flex-col items-center">
@@ -12,18 +11,38 @@ export const LandingText = () => {
                     <span className="font-bold"> 40</span> universities are
                     well-rated
                 </Body>
-                <Header preset="h2" className="flex items-center gap-2 ">
-                    Now, it&apos;s easiers
-                    <SmilingFace />
-                    to
-                </Header>
-                <Header preset="h2" className="flex items-center gap-2 ">
-                    rate
-                    <div className="flex">
-                        <ThumbsUp /> <FingerLove /> <ThumbsDown />
-                    </div>
-                    your lecturer
-                </Header>
+                {isProfessor ? (
+                    <>
+                        <Header
+                            preset="h2"
+                            className="flex items-center gap-2 font-normal "
+                        >
+                            Find your
+                            <span className="font-bold">lecturer</span>
+                            <LecturerIcon />
+                        </Header>
+                        <Header
+                            preset="h2"
+                            className="flex items-center gap-2 font-normal"
+                        >
+                            at
+                            <span className="font-bold">
+                                Institut Teknologi Bandung
+                            </span>
+                            <SchoolIcon />
+                        </Header>
+                    </>
+                ) : (
+                    <>
+                        <Header
+                            preset="h2"
+                            className="flex items-center gap-2 font-normal "
+                        >
+                            Enter your <span className="font-bold">school</span>
+                            <SchoolIcon /> to get started <BoltIcon />
+                        </Header>
+                    </>
+                )}
             </div>
         </div>
     )

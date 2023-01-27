@@ -27,7 +27,7 @@ export default function Home() {
                 <div className="h-[90px] w-[970px] bg-grey-600 mt-7"></div>
             </div>
             <div className="relative">
-                <LandingText />
+                <LandingText isProfessor={isProf} />
                 {!isProf ? (
                     <BuildingImage className="absolute desktop:right-20 desktop:-top-20 wide:right-60 wide:-top-28 animate-fade-in" />
                 ) : (
