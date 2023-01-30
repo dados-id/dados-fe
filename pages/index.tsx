@@ -1,14 +1,21 @@
-import { LandingText, Button } from "@components"
-import { useState } from "react"
+import { LandingText, Button, SearchBar } from "@components"
+import { useState, useEffect } from "react"
 import LandingPatternLeft from "@images/img_landing_pattern_left.svg"
 import LandingPatternRight from "@images/img_landing_pattern_right.svg"
 import LandingPatternLeftProf from "@images/img_landing_pattern_left_prof.svg"
 import LandingPatternRightProf from "@images/img_landing_pattern_right_prof.svg"
 import BuildingImage from "@images/img_building.svg"
 import ProfessorImage from "@images/img_professor.svg"
-
+import { useRouter } from "next/router"
 export default function Home() {
     const [isProf, setIsProf] = useState<boolean>(false)
+    const router = useRouter()
+
+    useEffect(() => {
+        if (router.query.university) {
+            setIsProf(true)
+        }
+    }, [router.query.university])
     return (
         <div className="desktop:h-screen ">
             {!isProf ? (
@@ -27,16 +34,20 @@ export default function Home() {
                 <div className="h-[90px] w-[970px] bg-grey-600 mt-7"></div>
             </div>
             <div className="relative">
-                <LandingText isProfessor={isProf} />
+                <LandingText
+                    isProfessor={isProf}
+                    universityName={router.query.university?.toString()}
+                />
                 {!isProf ? (
-                    <BuildingImage className="absolute desktop:right-20 desktop:-top-20 wide:right-60 wide:-top-28 animate-fade-in" />
+                    <BuildingImage className="absolute desktop:right-20 desktop:-top-40 wide:right-60 wide:-top-28 animate-fade-in" />
                 ) : (
-                    <ProfessorImage className="absolute desktop:right-20 desktop:-top-28 wide:right-60 wide:-top-36 animate-fade-in" />
+                    <ProfessorImage className="absolute desktop:right-20 desktop:-top-32 wide:right-60 wide:-top-36 animate-fade-in" />
                 )}
             </div>
-            <Button preset="primary" onClick={() => setIsProf(!isProf)}>
-                Change
-            </Button>
+
+            <div className="mx-28 mt-4">
+                <SearchBar isProf={isProf} setIsProf={setIsProf} />
+            </div>
         </div>
     )
 }
