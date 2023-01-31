@@ -1,4 +1,4 @@
-import { Dropdown, Button, CustomListBox } from "@components"
+import { Dropdown, Button, CustomListBox, Body } from "@components"
 import { useState, useEffect } from "react"
 import { University, Professor } from "@models"
 import { useRouter } from "next/router"
@@ -64,7 +64,9 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                             setInputVal((e.target as HTMLInputElement).value)
                     }}
                     onKeyUp={(e) =>
-                        e.key === "Enter" && router.push(`/search/${inputVal}`)
+                        e.key === "Enter" &&
+                        !isProf &&
+                        router.push(`/search/${inputVal}`)
                     }
                     value={inputVal}
                     type="text"
@@ -73,7 +75,7 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                         isProf ? "Lecturer" : "University/College"
                     } Name`}
                 />
-                {inputVal && (
+                {inputVal && !isProf && (
                     <Link href={`/search/${inputVal}`}>
                         <Button
                             preset="primary"

@@ -1,1 +1,2 @@
-export * from "./ProfessorQueryCard"
+export * from "./QueryCard"
+export * from "./RatingCard"

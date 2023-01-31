@@ -36,7 +36,9 @@ export const Dropdown = ({
                                 <Lecturer />
                                 <Body preset="p2">{prof.firstName}</Body>
                             </div>
-                            {/* <Body preset="p2">{lecturer.university}</Body> */}
+                            <Body preset="p2">
+                                {prof.schoolName}, {prof.facultyName}
+                            </Body>
                         </div>
                     ))
                 ) : (
@@ -48,7 +50,10 @@ export const Dropdown = ({
                                 onDropdownClick(),
                                     router.push({
                                         pathname: "/",
-                                        query: { university: uni.name },
+                                        query: {
+                                            university: uni.name,
+                                            id: uni.id,
+                                        },
                                     })
                             }}
                         >

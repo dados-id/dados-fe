@@ -1,4 +1,4 @@
-import { LandingText, Button, SearchBar } from "@components"
+import { LandingText, Body, SearchBar } from "@components"
 import { useState, useEffect } from "react"
 import LandingPatternLeft from "@images/img_landing_pattern_left.svg"
 import LandingPatternRight from "@images/img_landing_pattern_right.svg"
@@ -7,6 +7,7 @@ import LandingPatternRightProf from "@images/img_landing_pattern_right_prof.svg"
 import BuildingImage from "@images/img_building.svg"
 import ProfessorImage from "@images/img_professor.svg"
 import { useRouter } from "next/router"
+import Link from "next/link"
 export default function Home() {
     const [isProf, setIsProf] = useState<boolean>(false)
     const router = useRouter()
@@ -15,7 +16,7 @@ export default function Home() {
         if (router.query.university) {
             setIsProf(true)
         }
-    }, [router.query.university])
+    }, [router.query.university, router.query.id])
     return (
         <div className="desktop:h-screen ">
             {!isProf ? (
@@ -48,6 +49,21 @@ export default function Home() {
             <div className="mx-28 mt-4">
                 <SearchBar isProf={isProf} setIsProf={setIsProf} />
             </div>
+            {isProf && router.query.university && (
+                <div className="flex justify-center items-center mt-5 gap-5">
+                    <Link
+                        href={`/search/${router.query.id?.toString()}?professor=true&university=${router.query.university?.toString()}`}
+                    >
+                        {" "}
+                        <Body
+                            preset="p2"
+                            className="underline text-cobalt font-bold"
+                        >
+                            I want to find all lecturer from this school
+                        </Body>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }
