@@ -4,6 +4,7 @@ import { University, Professor } from "@models"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import axios from "axios"
+
 type SearchBarProps = {
     isProf: boolean
     setIsProf: (isProf: boolean) => void
@@ -12,8 +13,11 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
     const [data, setData] = useState<University[] | Professor[]>()
     const [inputVal, setInputVal] = useState("")
-    const router = useRouter()
 
+    const router = useRouter()
+    let timer: NodeJS.Timeout
+    const waitTime = 500
+    // let event
     useEffect(() => {
         if (inputVal) {
             if (isProf) {
@@ -39,6 +43,14 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
         setData([])
     }
 
+    const inputHandler = (event: any) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            onInputHandler()
+            setInputVal((event.target as HTMLInputElement).value)
+        }, waitTime)
+    }
+
     return (
         <div
             className={`relative flex justify-center flex-col w-full ${
@@ -59,16 +71,13 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                     <div className="w-[2px] h-8 bg-[#909090] rounded-full"></div>
                 </div>
                 <input
-                    onInput={(e) => {
-                        onInputHandler(),
-                            setInputVal((e.target as HTMLInputElement).value)
-                    }}
+                    onInput={inputHandler}
                     onKeyUp={(e) =>
                         e.key === "Enter" &&
                         !isProf &&
                         router.push(`/search/${inputVal}`)
                     }
-                    value={inputVal}
+                    // value={inputVal}
                     type="text"
                     className="w-full  outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora"
                     placeholder={`Search ${

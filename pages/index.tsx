@@ -17,6 +17,7 @@ export default function Home() {
             setIsProf(true)
         }
     }, [router.query.university, router.query.id])
+
     return (
         <div className="desktop:h-screen ">
             {!isProf ? (
