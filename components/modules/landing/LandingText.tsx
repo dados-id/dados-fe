@@ -10,7 +10,7 @@ export const LandingText = ({
     universityName?: string
 }) => {
     return (
-        <div className="mt-[12%]">
+        <div className="desktop:mt-[12%] tablet:mt-[25%] mobile:mt-[35%]">
             <div className="flex flex-col items-center">
                 <Body preset="p2">
                     <span className="font-bold">200</span> lecturers in
@@ -21,17 +21,24 @@ export const LandingText = ({
                     <>
                         <Header
                             preset="h2"
-                            className="flex items-center gap-2 font-normal "
+                            className="flex tablet:flex-row mobile:flex-col items-center tablet:gap-2 mobile:gap-1 font-normal "
                         >
-                            Find your
-                            <span className="font-bold">lecturer</span>
-                            <LecturerIcon />
-                            {!universityName && "to get started"}
+                            <div className="flex items-center tablet:gap-2 mobile:gap-1">
+                                Find your
+                                <span className="font-bold">lecturer</span>
+                                <LecturerIcon className="tablet:scale-100 mobile:scale-75" />
+                            </div>
+                            <div className="flex items-center tablet:gap-2 mobile:gap-1">
+                                {!universityName && "to get started"}
+                                {!universityName && (
+                                    <BoltIcon className="tablet:scale-100 mobile:scale-75" />
+                                )}
+                            </div>
                         </Header>
                         {universityName && (
                             <Header
                                 preset="h2"
-                                className="flex items-center gap-2 font-normal"
+                                className="flex items-center tablet:gap-2 mobile:gap-1 font-normal"
                             >
                                 at
                                 <span className="font-bold">
@@ -45,10 +52,18 @@ export const LandingText = ({
                     <>
                         <Header
                             preset="h2"
-                            className="flex items-center gap-2 font-normal "
+                            className="flex tablet:flex-row mobile:flex-col items-center tablet:gap-2 font-normal "
                         >
-                            Enter your <span className="font-bold">school</span>
-                            <SchoolIcon /> to get started <BoltIcon />
+                            <div className="flex items-center tablet:gap-2 mobile:gap-1">
+                                Enter your
+                                <span className="font-bold">school</span>
+                                <SchoolIcon className="tablet:scale-100 mobile:scale-75" />
+                            </div>
+                            <div className="flex items-center tablet:gap-2 mobile:gap-1">
+                                {" "}
+                                to get started{" "}
+                                <BoltIcon className="tablet:scale-100 mobile:scale-75" />
+                            </div>
                         </Header>
                     </>
                 )}

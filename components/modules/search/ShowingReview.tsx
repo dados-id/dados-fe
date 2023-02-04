@@ -6,6 +6,8 @@ import axios from "axios"
 import NotFoundImage from "@images/img_not_found.svg"
 import { Professor, University } from "@models"
 import Link from "next/link"
+import { Pagination } from "components/pagination/Pagination"
+import { useRouter } from "next/router"
 type ShowingReviewProps = {
     slug?: string
     isProf: boolean
@@ -15,25 +17,46 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
     const [data, setData] = useState<any>()
     const [page, setPage] = useState<number>(1)
     const [isLoading, setIsLoading] = useState<boolean>(true)
-
+    const [sortAscending, setSortAscending] = useState<boolean>(true)
+    const [sortByName, setSortByName] = useState<boolean>(true)
+    const [maxData, setMaxData] = useState<number>(1)
+    const router = useRouter()
     useEffect(() => {
+        //reset after select
         if (isProf) {
             axios
                 .get(`/api/professor/search/${slug}/${page}`)
                 .then((response) => {
                     setData(response.data)
                     setIsLoading(false)
+                    setMaxData(response.headers["x-total-count"])
                 })
         } else {
             axios
-                .get(`/api/university/landing/${slug}/${page}`)
+                .get(
+                    `/api/university/landing/${slug}/${page}/${
+                        sortAscending ? "asc" : "desc"
+                    }/${sortByName ? "name" : "rating"}`
+                )
                 .then((response) => {
                     setData(response.data)
                     setIsLoading(false)
+                    setMaxData(response.headers["x-total-count"])
                 })
         }
-    }, [page, isProf])
+    }, [page, isProf, sortAscending, sortByName, maxData])
 
+    const handleRoute = (id: number, uniname?: string) => {
+        setSortByName(true)
+        setSortAscending(true)
+        setPage(1)
+
+        router.push(
+            isProf
+                ? `/professor/${id}`
+                : `/search/${id}/?professor=true&university=${uniname}`
+        )
+    }
     const options = [
         { label: "Green", value: "green" },
         { label: "Green-Yellow", value: "greenyellow" },
@@ -48,8 +71,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
         return <p>loading...</p>
     }
     return (
-        <div className="flex gap-7 w-full">
-            {" "}
+        <div className="flex tablet:flex-row mobile:flex-col tablet:items-start mobile:items-center gap-7 w-full">
             <div className="w-full">
                 {data?.length > 0 ? (
                     <>
@@ -68,23 +90,26 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                 </option>
                             ))}
                         </Select>
-                        <Button
-                            preset="primary"
-                            onClick={() => setPage(page + 1)}
-                        >
-                            next page
-                        </Button>
+
                         <Body preset="p2" className="text-center py-5">
-                            Showing 5 out of 100{" "}
-                            {isProf ? "lecturers at" : "schools with"}{" "}
+                            Showing {data.length >= 5 ? 5 : maxData % 5} out of{" "}
+                            {maxData}
+                            {isProf ? " lecturers at" : " schools with"}{" "}
                             <span className="font-bold">
                                 {isProf ? name : slug}
                             </span>
                             {!isProf && " in their name"}
                         </Body>
                         <div className="h-10 w-full pl-14 pr-20 flex justify-between rounded-lg bg-cobalt">
-                            <div className="flex items-center gap-1">
-                                <ArrowDownIcon className="w-4 h-4 fill-whipcream" />
+                            <div
+                                className="flex items-center gap-1 cursor-pointer"
+                                onClick={() => setSortAscending(!sortAscending)}
+                            >
+                                <ArrowDownIcon
+                                    className={`w-4 h-4 fill-whipcream transform ${
+                                        sortAscending ? "" : "rotate-180"
+                                    }`}
+                                />
                                 <Body
                                     preset="p2"
                                     className="font-bold text-whipcream"
@@ -105,29 +130,48 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                         <div className="flex flex-col gap-5 mt-5">
                             {data?.map((d: any, index: number) =>
                                 isProf ? (
-                                    <QueryCard
-                                        isProf={isProf}
+                                    <div
+                                        onClick={() => handleRoute(d.id)}
                                         key={index}
-                                        rating={3.0}
-                                        name={`${d.firstName} ${d.lastName}`}
-                                        university={d.schoolName}
-                                        faculty={d.facultyName}
-                                        id={d.id}
-                                    />
+                                    >
+                                        <QueryCard
+                                            isProf={isProf}
+                                            key={index}
+                                            rating={3.0}
+                                            name={`${d.firstName} ${d.lastName}`}
+                                            university={d.schoolName}
+                                            faculty={d.facultyName}
+                                            id={d.id}
+                                        />
+                                    </div>
                                 ) : (
-                                    // kalo pencet card redirect ke yg sama kasih params
-                                    <QueryCard
-                                        isProf={isProf}
+                                    <div
+                                        onClick={() =>
+                                            handleRoute(d.id, d.name)
+                                        }
                                         key={index}
-                                        rating={3.0}
-                                        name={`${d.name}`}
-                                        university={d.city}
-                                        faculty={d.province}
-                                        id={d.id}
-                                    />
+                                    >
+                                        <QueryCard
+                                            isProf={isProf}
+                                            key={index}
+                                            rating={3.0}
+                                            name={`${d.name}`}
+                                            university={d.city}
+                                            faculty={d.province}
+                                            id={d.id}
+                                        />
+                                    </div>
                                 )
                             )}
-                        </div>{" "}
+                        </div>
+                        <div className="mt-10 mb-14">
+                            <Pagination
+                                maxPage={Math.ceil(maxData / 5)}
+                                currentPage={page}
+                                prev={setPage}
+                                next={setPage}
+                            />
+                        </div>
                     </>
                 ) : (
                     <div className="flex flex-col items-center justify-center w-full mb-52">
@@ -156,7 +200,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                 )}
             </div>
             {data?.length > 0 && (
-                <div className="w-40 h-[600px] bg-grey-400"></div>
+                <div className="tablet:w-40 tablet:h-[600px] mobile:w-[300px] mobile:h-[50px] bg-grey-400 mobile:mb-4 tablet:mb-0"></div>
             )}
         </div>
     )

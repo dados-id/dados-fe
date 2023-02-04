@@ -19,21 +19,21 @@ export default function Home() {
     }, [router.query.university, router.query.id])
 
     return (
-        <div className="desktop:h-screen ">
+        <div className="desktop:h-screen tablet:h-[75vh] mobile:h-screen ">
             {!isProf ? (
                 <>
-                    <LandingPatternLeft className="absolute  desktop:w-full -z-10 animate-fade-in" />
-                    <LandingPatternRight className="absolute  -z-10 right-0 animate-fade-in" />
+                    <LandingPatternLeft className="absolute  desktop:w-full desktop:scale-100 tablet:scale-90 mobile:scale-50 desktop:top-0 tablet:bottom-64 mobile:bottom-20 desktop:left-0 tablet:-left-10 mobile:-left-40 -z-10 animate-fade-in" />
+                    <LandingPatternRight className="absolute  -z-10 right-0 animate-fade-in desktop:scale-100 tablet:scale-90 mobile:scale-50 desktop:right-0 tablet:-right-10 mobile:-right-48 tablet:top-0 mobile:-top-12" />
                 </>
             ) : (
                 <>
-                    <LandingPatternLeftProf className="absolute  desktop:w-full -z-10 top-44 animate-fade-in" />
-                    <LandingPatternRightProf className="absolute  -z-10 right-0 animate-fade-in" />
+                    <LandingPatternLeftProf className="absolute  desktop:w-full desktop:scale-100 tablet:scale-90 mobile:scale-50 -z-10 desktop:top-44 tablet:bottom-72 mobile:bottom-28 mobile:-left-40 desktop:left-0 tablet:-left-10 animate-fade-in" />
+                    <LandingPatternRightProf className="absolute  -z-10 right-0 animate-fade-in desktop:scale-100 tablet:scale-90 mobile:scale-50 desktop:right-0 tablet:-right-10 mobile:-right-48 mobile:-top-12" />
                 </>
             )}
 
             <div className="flex justify-center">
-                <div className="h-[90px] w-[970px] bg-grey-600 mt-7"></div>
+                <div className="tablet:h-[90px] mobile:h-[50px] w-full desktop:mx-[155px] tablet:mx-5 mobile:mx-[30px] bg-grey-600 tablet:mt-7 mobile:mt-4"></div>
             </div>
             <div className="relative">
                 <LandingText
@@ -41,13 +41,13 @@ export default function Home() {
                     universityName={router.query.university?.toString()}
                 />
                 {!isProf ? (
-                    <BuildingImage className="absolute desktop:right-20 desktop:-top-40 wide:right-60 wide:-top-28 animate-fade-in" />
+                    <BuildingImage className="absolute desktop:right-20 tablet:right-10 mobile:-right-14 desktop:-top-40 tablet:-top-52 mobile:-top-44 desktop:scale-100 tablet:scale-75 mobile:scale-[0.45] wide:right-60 wide:-top-28 animate-fade-in" />
                 ) : (
-                    <ProfessorImage className="absolute desktop:right-20 desktop:-top-32 wide:right-60 wide:-top-36 animate-fade-in" />
+                    <ProfessorImage className="absolute desktop:right-20 tablet:right-10 mobile:-right-14 desktop:-top-32 tablet:-top-56 mobile:-top-48 desktop:scale-100 tablet:scale-75 mobile:scale-[0.38] wide:right-60 wide:-top-36 animate-fade-in" />
                 )}
             </div>
 
-            <div className="mx-28 mt-4">
+            <div className="desktop:mx-28 tablet:mx-11 mobile:mx-5 desktop:mt-4 tablet:mt-6 mobile:mt-3">
                 <SearchBar isProf={isProf} setIsProf={setIsProf} />
             </div>
             {isProf && router.query.university && (

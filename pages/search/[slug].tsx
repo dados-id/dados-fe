@@ -10,7 +10,7 @@ export default function SearchPage() {
     }, [router.query.professor, router.query.university])
 
     return (
-        <div className="mx-32 flex gap-7 mt-14">
+        <div className="desktop::mx-32 tablet:mx-10 mobile:mx-5 flex gap-7 mt-14">
             <ShowingReview
                 slug={slug?.toString()}
                 isProf={

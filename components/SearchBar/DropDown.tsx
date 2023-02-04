@@ -3,6 +3,7 @@ import UniversityIcon from "public/assets/images/university.svg"
 import Lecturer from "public/assets/images/lecturer.svg"
 import { University, Professor } from "@models"
 import { useRouter } from "next/router"
+import Link from "next/link"
 interface searchResProps {
     data: any
     isProf: boolean
@@ -24,27 +25,29 @@ export const Dropdown = ({
         setInputVal("")
     }
     return (
-        <div className="px-4">
+        <div className="tablet:px-4 flex flex-col tablet:gap-2 mobile:gap-1 mobile:px-2">
             {data.length > 0 ? (
                 isProf ? (
                     data.map((prof: Professor, index: number) => (
-                        <div
-                            className="flex justify-between items-center"
-                            key={index}
-                        >
-                            <div className="flex gap-2 items-center">
-                                <Lecturer />
-                                <Body preset="p2">{prof.firstName}</Body>
+                        <Link href={`/professor/${prof.id}`} key={index}>
+                            <div
+                                className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center mobile"
+                                key={index}
+                            >
+                                <div className="flex tablet:gap-2 mobile:gap-1 items-center">
+                                    <Lecturer />
+                                    <Body preset="p2">{prof.firstName}</Body>
+                                </div>
+                                <Body preset="p2" className="ml-7">
+                                    {prof.schoolName}, {prof.facultyName}
+                                </Body>
                             </div>
-                            <Body preset="p2">
-                                {prof.schoolName}, {prof.facultyName}
-                            </Body>
-                        </div>
+                        </Link>
                     ))
                 ) : (
                     data.map((uni: University, index: number) => (
                         <div
-                            className="flex justify-between items-center"
+                            className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center "
                             key={index}
                             onClick={() => {
                                 onDropdownClick(),
@@ -57,11 +60,11 @@ export const Dropdown = ({
                                     })
                             }}
                         >
-                            <div className="flex gap-2 items-center">
+                            <div className="flex tablet:gap-2 mobile:gap-1 items-center">
                                 <UniversityIcon />
                                 <Body preset="p2">{uni.name}</Body>
                             </div>
-                            <Body preset="p2">
+                            <Body preset="p2" className="ml-7">
                                 {uni.city}, {uni.province}
                             </Body>
                         </div>

@@ -6,6 +6,7 @@ import { Body } from "components/typography"
 import { RatingCard } from "./RatingCard"
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 type QueryCardProps = {
     name: string
@@ -26,34 +27,25 @@ export const QueryCard = ({
 }: QueryCardProps) => {
     // const [isBookmark, setIsBookmark] = useState<boolean>(false)
     return (
-        <Link
-            href={
-                isProf
-                    ? `/professor/${id}`
-                    : `/search/${id}/?professor=true&university=${name}`
-            }
-        >
-            {" "}
-            <div className="w-full h-24 flex justify-between border-2 border-grey-400 rounded-xl p-4">
-                <div className="flex gap-2 items-center">
-                    {isProf ? <MaleIcon /> : <UniversityIcon />}
-                    <div className="flex flex-col">
-                        <Body preset="p1" className="font-bold text-mariana">
-                            {name}
-                        </Body>
-                        <Body preset="p2" className="text-mariana">
-                            {university}, {faculty}
-                        </Body>
-                    </div>
+        <div className="w-full h-24 flex justify-between border-2 border-grey-400 rounded-xl p-4">
+            <div className="flex gap-2 items-center">
+                {isProf ? <MaleIcon /> : <UniversityIcon />}
+                <div className="flex flex-col">
+                    <Body preset="p1" className="font-bold text-mariana">
+                        {name}
+                    </Body>
+                    <Body preset="p2" className="text-mariana">
+                        {university}, {faculty}
+                    </Body>
                 </div>
-                <div className="flex gap-4 items-center">
-                    <RatingCard rating={rating} />
-                    {/* <div className="h-10 w-[1px] bg-grey-600"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+                <RatingCard rating={rating} />
+                {/* <div className="h-10 w-[1px] bg-grey-600"></div>
                 <div onClick={() => setIsBookmark(!isBookmark)}>
                     {isBookmark ? <BookmarkIcon /> : <BookmarkAddIcon />}
                 </div> */}
-                </div>
             </div>
-        </Link>
+        </div>
     )
 }

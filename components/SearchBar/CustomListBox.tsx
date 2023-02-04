@@ -26,17 +26,24 @@ export const CustomListBox = ({
 
     return (
         <Listbox value={isProf} onChange={setIsProf}>
-            <div className="relative mt-1 px-5">
-                <Listbox.Button className="relative w-full cursor-default rounded-lg py-4 pr-12 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+            <div className="relative mt-1 tablet:px-5 mobile:px-2">
+                <Listbox.Button className="relative w-full cursor-default rounded-lg py-4 tablet:pr-12 mobile:pr-6 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                     <span className="w-full">
-                        <Header preset="h6" className="flex items-center gap-2">
+                        <Header
+                            preset="h6"
+                            className="flex items-center tablet:gap-2 mobile:gap-1 mobile:text-[0.620rem] tablet:text-[1rem]"
+                        >
                             Search by{" "}
-                            {isProf ? <Lecturer /> : <UniversityIcon />}
+                            {isProf ? (
+                                <Lecturer className="tablet:scale-100 mobile:scale-75" />
+                            ) : (
+                                <UniversityIcon className="tablet:scale-100 mobile:scale-75" />
+                            )}
                         </Header>
                     </span>
-                    <span className="pointer-events-none absolute inset-y-0  right-0 flex items-center pr-2 ">
+                    <span className="pointer-events-none absolute inset-y-0  tablet:right-0 mobile:-right-3 flex items-center pr-2 ">
                         <ChevronDownIcon
-                            className="h-8 w-8 text-gray-400"
+                            className="tablet:h-8 tablet:w-8 mobile:w-5 mobile:h-5 text-gray-400"
                             aria-hidden="true"
                         />
                     </span>
@@ -51,7 +58,7 @@ export const CustomListBox = ({
                         <Listbox.Option
                             value={false}
                             className={({ active }) =>
-                                `relative cursor-default select-none py-2 px-5 ${
+                                `relative cursor-default select-none py-2 tablet:px-5 mobile:px-2 ${
                                     active
                                         ? "bg-amber-100 text-amber-900"
                                         : "text-gray-900"
@@ -66,7 +73,7 @@ export const CustomListBox = ({
                                             onListBoxClick(), router.push("/")
                                         }}
                                     >
-                                        <UniversityIcon />
+                                        <UniversityIcon className="tablet:scale-100 mobile:scale-75" />
                                         <Body preset="p2" className="font-bold">
                                             School Name
                                         </Body>
@@ -77,7 +84,7 @@ export const CustomListBox = ({
                         <Listbox.Option
                             value={true}
                             className={({ active }) =>
-                                `relative cursor-default select-none py-2 px-5 ${
+                                `relative cursor-default select-none py-2 tablet:px-5 mobile:px-2 ${
                                     active
                                         ? "bg-amber-100 text-amber-900"
                                         : "text-gray-900"
@@ -90,7 +97,7 @@ export const CustomListBox = ({
                                         className="flex items-center gap-2"
                                         onClick={() => onListBoxClick()}
                                     >
-                                        <Lecturer />
+                                        <Lecturer className="tablet:scale-100 mobile:scale-75" />
                                         <Body preset="p2" className="font-bold">
                                             Lecturer Name
                                         </Body>

@@ -47,7 +47,7 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
         clearTimeout(timer)
         timer = setTimeout(() => {
             onInputHandler()
-            setInputVal((event.target as HTMLInputElement).value)
+            setInputVal(event.target.value)
         }, waitTime)
     }
 
@@ -56,19 +56,19 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
             className={`relative flex justify-center flex-col w-full ${
                 inputVal
                     ? "h-full pb-7 rounded-[32px]"
-                    : "h-16 rounded-[100px] "
-            } bg-white border-2 border-mariana px-2 `}
+                    : "desktop:h-16 tablet:h-14 mobile:h-10 rounded-[100px] "
+            } bg-white border-2 border-mariana tablet:px-2 mobile:px-1 `}
         >
             {/* <div className="flex items-center "> */}
-            <div className="flex flex-row items-center  gap-2 h-full my-2">
-                <div className="flex flex-row w-[20%] h-full  items-center ">
+            <div className="flex flex-row items-center  tablet:gap-2 h-full tablet:my-2">
+                <div className="flex flex-row desktop:w-[20%] tablet:w-[40%] mobile:w-[65%] h-full  items-center ">
                     <CustomListBox
                         isProf={isProf}
                         setIsProf={setIsProf}
                         setInputVal={setInputVal}
                         onInputHandler={onInputHandler}
                     />
-                    <div className="w-[2px] h-8 bg-[#909090] rounded-full"></div>
+                    <div className="w-[2px] tablet:h-8 mobile:h-5 bg-[#909090] rounded-full"></div>
                 </div>
                 <input
                     onInput={inputHandler}
@@ -77,7 +77,6 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                         !isProf &&
                         router.push(`/search/${inputVal}`)
                     }
-                    // value={inputVal}
                     type="text"
                     className="w-full  outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora"
                     placeholder={`Search ${
