@@ -1,4 +1,4 @@
-import { Body, Button, QueryCard } from "@components"
+import { Body, Button, NoLecturerCard, QueryCard } from "@components"
 import { useEffect, useState } from "react"
 import { Select } from "@chakra-ui/react"
 import { ChevronDownIcon, ArrowDownIcon } from "@heroicons/react/20/solid"
@@ -24,8 +24,17 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
     useEffect(() => {
         //reset after select
         if (isProf) {
+            console.log(
+                `/api/professor/search/${slug}/${page}/${
+                    sortAscending ? "asc" : "desc"
+                }/${sortByName ? "name" : "rating"}`
+            )
             axios
-                .get(`/api/professor/search/${slug}/${page}`)
+                .get(
+                    `/api/professor/search/${slug}/${page}/${
+                        sortAscending ? "asc" : "desc"
+                    }/${sortByName ? "name" : "rating"}`
+                )
                 .then((response) => {
                     setData(response.data)
                     setIsLoading(false)
@@ -102,12 +111,19 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                         </Body>
                         <div className="h-10 w-full pl-14 pr-20 flex justify-between rounded-lg bg-cobalt">
                             <div
-                                className="flex items-center gap-1 cursor-pointer"
-                                onClick={() => setSortAscending(!sortAscending)}
+                                className={`flex items-center gap-1 ${
+                                    !sortByName && "opacity-40"
+                                } cursor-pointer`}
+                                onClick={() => {
+                                    setSortAscending(!sortAscending),
+                                        setSortByName(true)
+                                }}
                             >
                                 <ArrowDownIcon
                                     className={`w-4 h-4 fill-whipcream transform ${
-                                        sortAscending ? "" : "rotate-180"
+                                        sortAscending && sortByName
+                                            ? ""
+                                            : "rotate-180"
                                     }`}
                                 />
                                 <Body
@@ -117,15 +133,31 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                     Name
                                 </Body>
                             </div>
-                            <div className="flex items-center gap-1">
-                                <ArrowDownIcon className="w-4 h-4 fill-whipcream" />
-                                <Body
-                                    preset="p2"
-                                    className="font-bold text-whipcream"
+                            {isProf && (
+                                <div
+                                    className={`flex items-center gap-1 ${
+                                        sortByName && "opacity-40"
+                                    } cursor-pointer`}
+                                    onClick={() => {
+                                        setSortAscending(!sortAscending),
+                                            setSortByName(false)
+                                    }}
                                 >
-                                    Rating
-                                </Body>
-                            </div>
+                                    <ArrowDownIcon
+                                        className={`w-4 h-4 fill-whipcream transform ${
+                                            sortAscending && !sortByName
+                                                ? ""
+                                                : "rotate-180"
+                                        } `}
+                                    />
+                                    <Body
+                                        preset="p2"
+                                        className="font-bold text-whipcream"
+                                    >
+                                        Rating
+                                    </Body>
+                                </div>
+                            )}
                         </div>
                         <div className="flex flex-col gap-5 mt-5">
                             {data?.map((d: any, index: number) =>
@@ -133,11 +165,12 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                     <div
                                         onClick={() => handleRoute(d.id)}
                                         key={index}
+                                        className="cursor-pointer"
                                     >
                                         <QueryCard
                                             isProf={isProf}
                                             key={index}
-                                            rating={3.0}
+                                            rating={d.rating}
                                             name={`${d.firstName} ${d.lastName}`}
                                             university={d.schoolName}
                                             faculty={d.facultyName}
@@ -150,6 +183,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                             handleRoute(d.id, d.name)
                                         }
                                         key={index}
+                                        className="cursor-pointer"
                                     >
                                         <QueryCard
                                             isProf={isProf}
@@ -164,13 +198,18 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                 )
                             )}
                         </div>
-                        <div className="mt-10 mb-14">
+                        <div className="mt-10 tablet:mb-14 mobile:mb-10">
                             <Pagination
                                 maxPage={Math.ceil(maxData / 5)}
                                 currentPage={page}
                                 prev={setPage}
                                 next={setPage}
                             />
+                            {Math.ceil(maxData / 5) === page && (
+                                <div className="mt-10">
+                                    <NoLecturerCard />
+                                </div>
+                            )}
                         </div>
                     </>
                 ) : (
