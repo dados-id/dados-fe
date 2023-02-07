@@ -72,26 +72,44 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                 </div>
                 <input
                     onInput={inputHandler}
-                    onKeyUp={(e) =>
-                        e.key === "Enter" &&
-                        !isProf &&
-                        router.push(`/search/${inputVal}`)
-                    }
+                    onKeyUp={(e) => {
+                        e.key === "Enter" && !isProf
+                            ? (router.push(`/search/${inputVal}`),
+                              localStorage.removeItem("uniId"),
+                              localStorage.removeItem("uniName"))
+                            : e.key === "Enter" &&
+                              router.push(`/search/${inputVal}/?professor=true`)
+                    }}
                     type="text"
                     className="w-full  outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora"
                     placeholder={`Search ${
                         isProf ? "Lecturer" : "University/College"
                     } Name`}
                 />
-                {inputVal && !isProf && (
+                {inputVal && !isProf ? (
                     <Link href={`/search/${inputVal}`}>
                         <Button
                             preset="primary"
                             className="absolute top-4  right-4"
+                            onClick={() => {
+                                localStorage.removeItem("uniId"),
+                                    localStorage.removeItem("uniName")
+                            }}
                         >
                             See all
                         </Button>
                     </Link>
+                ) : (
+                    inputVal && (
+                        <Link href={`/search/${inputVal}/?professor=true`}>
+                            <Button
+                                preset="primary"
+                                className="absolute top-2  right-6"
+                            >
+                                See all
+                            </Button>
+                        </Link>
+                    )
                 )}
             </div>
             {/* </div> */}

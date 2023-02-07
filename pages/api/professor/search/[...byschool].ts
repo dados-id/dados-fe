@@ -3,12 +3,12 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import axios from "axios"
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { slug } = req.query
+    const { byschool } = req.query
     // query prof by school id
-    if (slug) {
+    if (byschool) {
         axios
             .get(
-                `${process.env.NEXT_PUBLIC_API_ROOT}/schools/${slug[0]}/professors?page_id=${slug[1]}&page_size=5&sort_order=${slug[2]}&sort_by=${slug[3]}`
+                `${process.env.NEXT_PUBLIC_API_ROOT}/schools/${byschool[0]}/professors?page_id=${byschool[1]}&page_size=5&sort_order=${byschool[2]}&sort_by=${byschool[3]}`
             )
             .then((response) => {
                 res.status(200).setHeader(

@@ -22,24 +22,32 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
     const [maxData, setMaxData] = useState<number>(1)
     const router = useRouter()
     useEffect(() => {
-        //reset after select
         if (isProf) {
-            console.log(
-                `/api/professor/search/${slug}/${page}/${
-                    sortAscending ? "asc" : "desc"
-                }/${sortByName ? "name" : "rating"}`
-            )
-            axios
-                .get(
-                    `/api/professor/search/${slug}/${page}/${
-                        sortAscending ? "asc" : "desc"
-                    }/${sortByName ? "name" : "rating"}`
-                )
-                .then((response) => {
-                    setData(response.data)
-                    setIsLoading(false)
-                    setMaxData(response.headers["x-total-count"])
-                })
+            if (name) {
+                axios
+                    .get(
+                        `/api/professor/search/${slug}/${page}/${
+                            sortAscending ? "asc" : "desc"
+                        }/${sortByName ? "name" : "rating"}`
+                    )
+                    .then((response) => {
+                        setData(response.data)
+                        setIsLoading(false)
+                        setMaxData(response.headers["x-total-count"])
+                    })
+            } else {
+                axios
+                    .get(
+                        `/api/professor/landing/${slug}/${page}/${
+                            sortAscending ? "asc" : "desc"
+                        }/${sortByName ? "name" : "rating"}`
+                    )
+                    .then((response) => {
+                        setData(response.data)
+                        setIsLoading(false)
+                        setMaxData(response.headers["x-total-count"])
+                    })
+            }
         } else {
             axios
                 .get(
@@ -59,7 +67,9 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
         setSortByName(true)
         setSortAscending(true)
         setPage(1)
-
+        if (!isProf && uniname) {
+            localStorage.setItem("uniName", uniname)
+        }
         router.push(
             isProf
                 ? `/professor/${id}`
@@ -84,32 +94,42 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
             <div className="w-full">
                 {data?.length > 0 ? (
                     <>
-                        <Select
-                            name="faculty"
-                            placeholder="Filter by faculty"
-                            color={"#909090"}
-                            _focus={{ color: "#000000" }}
-                            icon={
-                                <ChevronDownIcon className="fill-grey-600 w-3 h-2" />
-                            }
-                        >
-                            {options.map((o, index) => (
-                                <option value={o.value} key={index}>
-                                    {o.label}
-                                </option>
-                            ))}
-                        </Select>
+                        {isProf && (
+                            <Select
+                                name="faculty"
+                                placeholder="Filter by faculty"
+                                color={"#909090"}
+                                _focus={{ color: "#000000" }}
+                                icon={
+                                    <ChevronDownIcon className="fill-grey-600 w-3 h-2" />
+                                }
+                            >
+                                {options.map((o, index) => (
+                                    <option value={o.value} key={index}>
+                                        {o.label}
+                                    </option>
+                                ))}
+                            </Select>
+                        )}
 
                         <Body preset="p2" className="text-center py-5">
                             Showing {data.length >= 5 ? 5 : maxData % 5} out of{" "}
                             {maxData}
-                            {isProf ? " lecturers at" : " schools with"}{" "}
+                            {isProf
+                                ? name
+                                    ? " lecturers at"
+                                    : " professors with"
+                                : " schools with"}{" "}
                             <span className="font-bold">
-                                {isProf ? name : slug}
+                                {isProf ? (name ? name : slug) : slug}
                             </span>
-                            {!isProf && " in their name"}
+                            {(!isProf || !name) && " in their name"}
                         </Body>
-                        <div className="h-10 w-full pl-14 pr-20 flex justify-between rounded-lg bg-cobalt">
+                        <div
+                            className={`h-10 w-full pl-14 pr-20 flex rounded-lg bg-cobalt ${
+                                !isProf ? "justify-center" : "justify-between"
+                            }`}
+                        >
                             <div
                                 className={`flex items-center gap-1 ${
                                     !sortByName && "opacity-40"

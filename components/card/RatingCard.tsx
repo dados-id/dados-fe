@@ -4,9 +4,9 @@ export const RatingCard = ({ rating }: { rating: number }) => {
     return (
         <div
             className={`flex gap-1 items-center h-full ${
-                rating > 4
+                rating >= 4
                     ? "bg-success"
-                    : rating > 2
+                    : rating >= 3
                     ? "bg-warning"
                     : "bg-danger"
             } p-3 rounded-xl`}

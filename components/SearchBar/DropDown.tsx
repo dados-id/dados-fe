@@ -3,6 +3,7 @@ import UniversityIcon from "public/assets/images/university.svg"
 import Lecturer from "public/assets/images/lecturer.svg"
 import { University, Professor } from "@models"
 import { useRouter } from "next/router"
+import { useSetUniNameContext } from "@context"
 import Link from "next/link"
 interface searchResProps {
     data: any
@@ -50,14 +51,9 @@ export const Dropdown = ({
                             className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center "
                             key={index}
                             onClick={() => {
-                                onDropdownClick(),
-                                    router.push({
-                                        pathname: "/",
-                                        query: {
-                                            university: uni.name,
-                                            id: uni.id,
-                                        },
-                                    })
+                                localStorage.setItem("uniName", uni.name)
+                                localStorage.setItem("uniId", uni.id.toString())
+                                onDropdownClick(), router.push("/")
                             }}
                         >
                             <div className="flex tablet:gap-2 mobile:gap-1 items-center">

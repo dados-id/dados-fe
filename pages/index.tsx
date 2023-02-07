@@ -8,15 +8,17 @@ import BuildingImage from "@images/img_building.svg"
 import ProfessorImage from "@images/img_professor.svg"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { useUniNameContext, useSetUniNameContext } from "@context"
+
 export default function Home() {
     const [isProf, setIsProf] = useState<boolean>(false)
     const router = useRouter()
 
     useEffect(() => {
-        if (router.query.university) {
+        if (localStorage.getItem("uniName")) {
             setIsProf(true)
         }
-    }, [router.query.university, router.query.id])
+    }, [localStorage.getItem("uniName")])
 
     return (
         <div className="desktop:h-screen tablet:h-[75vh] mobile:h-screen ">
@@ -38,7 +40,7 @@ export default function Home() {
             <div className="relative">
                 <LandingText
                     isProfessor={isProf}
-                    universityName={router.query.university?.toString()}
+                    universityName={localStorage.getItem("uniName")?.toString()}
                 />
                 {!isProf ? (
                     <BuildingImage className="absolute desktop:right-20 tablet:right-10 mobile:-right-14 desktop:-top-40 tablet:-top-52 mobile:-top-44 desktop:scale-100 tablet:scale-75 mobile:scale-[0.45] wide:right-60 wide:-top-28 animate-fade-in" />
