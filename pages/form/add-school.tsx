@@ -9,15 +9,41 @@ import { Select, Checkbox,  Modal,
     ModalCloseButton, useDisclosure } from '@chakra-ui/react'
 import University from "public/assets/images/university.svg"
 import { useState } from "react"
+import axios from "axios"
 
 const AddProfessor = () => {
-
-    const [selectBy, setSelectBy] = useState("Lecturer")
-    const [isOpened, setIsOpened] = useState(false);
     const [name, setName] = useState("");
-    const [school, setSchool] = useState("");
+    const [nicknames, setNicknames] = useState("");
+    const [province, setProvince] = useState("");
+    const [city, setCity] = useState("");
+    const [website, setWebsite] = useState("");
+    const [email, setEmail] = useState("");
     const [faculty, setFaculty] = useState("");
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const addSchool = (name: string, nicknames: string, city: string, province: string, website: string, email: string) => {
+        try{
+            console.log(name, nicknames, city, province, website)
+            if(!nicknames || !name || !city || !province || !website){
+                throw "Incomplete Data"
+            }
+            onClose()
+            axios
+            .post("../api/form/add-school", {
+                name: name,
+                nicknames: nicknames,
+                city: city,
+                province: province,
+                website: website,
+                email: email
+            })
+            .then(res => {
+                console.log('res', res.data);
+            })
+        } catch(error) {
+            console.log("error", error)
+        }
+    }
 
     return (
         <>
@@ -28,7 +54,7 @@ const AddProfessor = () => {
                         <Header preset="h3" className="text-center">Add a School</Header>
                         <University />
                     </div>
-                    <Body preset="p2">Please use the searchbar
+                    <Body preset="p2" className="text-center">Please use the searchbar
                         <Link href={"/"} className="underline font-bold"> above </Link>
                         to make sure that the lecturer does not exist
                     </Body>
@@ -49,7 +75,7 @@ const AddProfessor = () => {
                             <Body preset="p2">Commonly Used School Nickname</Body>
                             <div className={`rounded-full relative flex flex-col bg-white border-2 border-mariana px-4 py-2 gap-2`}>
                                 <div className="flex flex-row items-center justify-between gap-2 h-full">
-                                    <input onInput={e => setFaculty((e.target as HTMLInputElement).value)} value={faculty} type="setName" className="w-full outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
+                                    <input onInput={e => setNicknames((e.target as HTMLInputElement).value)} value={nicknames} type="setName" className="w-full outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
                                 </div>
                             </div>
                         </div>
@@ -61,7 +87,7 @@ const AddProfessor = () => {
                         <Body preset="p2">Province/State</Body>
                         <div className={`rounded-full relative flex flex-col bg-white border-2 border-mariana px-4 py-2 gap-2 `}>
                             <div className="flex flex-row items-center gap-2 h-full ">
-                                <input onInput={e => setName((e.target as HTMLInputElement).value)} value={name} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
+                                <input onInput={e => setProvince((e.target as HTMLInputElement).value)} value={province} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
                             </div>
                         </div>
                     </div>
@@ -69,7 +95,7 @@ const AddProfessor = () => {
                         <Body preset="p2">City</Body>
                         <div className={`rounded-full relative flex flex-col bg-white border-2 border-mariana px-4 py-2 gap-2 `}>
                             <div className="flex flex-row items-center gap-2 h-full ">
-                                <input onInput={e => setName((e.target as HTMLInputElement).value)} value={name} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
+                                <input onInput={e => setCity((e.target as HTMLInputElement).value)} value={city} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
                             </div>
                         </div>
                     </div>                    
@@ -77,7 +103,7 @@ const AddProfessor = () => {
                         <Body preset="p2">School's Website</Body>
                         <div className={`rounded-full relative flex flex-col bg-white border-2 border-mariana px-4 py-2 gap-2 `}>
                             <div className="flex flex-row items-center gap-2 h-full ">
-                                <input onInput={e => setName((e.target as HTMLInputElement).value)} value={name} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
+                                <input onInput={e => setWebsite((e.target as HTMLInputElement).value)} value={website} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
                             </div>
                         </div>
                     </div>
@@ -85,7 +111,7 @@ const AddProfessor = () => {
                         <Body preset="p2">Your Email</Body>
                         <div className={`rounded-full relative flex flex-col bg-white border-2 border-mariana px-4 py-2 gap-2 `}>
                             <div className="flex flex-row items-center gap-2 h-full ">
-                                <input onInput={e => setName((e.target as HTMLInputElement).value)} value={name} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
+                                <input onInput={e => setEmail((e.target as HTMLInputElement).value)} value={email} type="setName" className="outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora" placeholder={`John Doe`} />
                             </div>
                         </div>
                     </div>
@@ -110,7 +136,7 @@ const AddProfessor = () => {
                                 <Header preset="h4">as a school</Header>
                             </div>
                             <div className="flex flex-row gap-4">
-                                <Button preset="primary" onClick={onOpen}>Add School</Button>
+                                <Button preset="primary" onClick={() => addSchool(name, nicknames, city, province, website, email)}>Add School</Button>
                                 <Button preset="secondary" onClick={onClose}>Re-Check Inputs</Button>
                             </div>
                         </div>
