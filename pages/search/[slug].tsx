@@ -14,6 +14,7 @@ export default function SearchPage() {
                         ? router.query.professor === "true"
                         : false
                 }
+                profName={router.query.name ? router.query.name.toString() : ""}
                 name={router.query.university?.toString()}
             />
         </div>

@@ -12,29 +12,58 @@ type ShowingReviewProps = {
     slug?: string
     isProf: boolean
     name?: string
+    profName: string
 }
-export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
+export const ShowingReview = ({
+    slug,
+    isProf,
+    name,
+    profName,
+}: ShowingReviewProps) => {
     const [data, setData] = useState<any>()
     const [page, setPage] = useState<number>(1)
+    const [faculties, setFaculties] = useState<any[]>([])
+    const [selectFacultyId, setSelectFacultyId] = useState<any>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [sortAscending, setSortAscending] = useState<boolean>(true)
     const [sortByName, setSortByName] = useState<boolean>(true)
     const [maxData, setMaxData] = useState<number>(1)
     const router = useRouter()
+
     useEffect(() => {
         if (isProf) {
+            axios
+                .get(`/api/university/faculty/${localStorage.getItem("uniId")}`)
+                .then((response) => {
+                    setFaculties(response.data)
+                })
+
             if (name) {
-                axios
-                    .get(
-                        `/api/professor/search/${slug}/${page}/${
-                            sortAscending ? "asc" : "desc"
-                        }/${sortByName ? "name" : "rating"}`
-                    )
-                    .then((response) => {
-                        setData(response.data)
-                        setIsLoading(false)
-                        setMaxData(response.headers["x-total-count"])
-                    })
+                if (selectFacultyId) {
+                    axios
+                        .get(
+                            `/api/professor/search/faculty/${slug}/${selectFacultyId}/${page}/${
+                                sortAscending ? "asc" : "desc"
+                            }/${sortByName ? "name" : "rating"}/${profName}`
+                        )
+                        .then((response) => {
+                            setData(response.data)
+                            setIsLoading(false)
+                            setMaxData(response.headers["x-total-count"])
+                        })
+                } else {
+                    axios
+                        .get(
+                            `/api/professor/search/${slug}/${page}/${
+                                sortAscending ? "asc" : "desc"
+                            }/${sortByName ? "name" : "rating"}/${profName} `
+                        )
+                        .then((response) => {
+                            setData(response.data)
+                            setIsLoading(false)
+                            setMaxData(response.headers["x-total-count"])
+                        })
+                }
             } else {
                 axios
                     .get(
@@ -61,7 +90,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                     setMaxData(response.headers["x-total-count"])
                 })
         }
-    }, [page, isProf, sortAscending, sortByName, maxData])
+    }, [page, isProf, sortAscending, sortByName, maxData, selectFacultyId])
 
     const handleRoute = (id: number, uniname?: string) => {
         setSortByName(true)
@@ -69,6 +98,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
         setPage(1)
         if (!isProf && uniname) {
             localStorage.setItem("uniName", uniname)
+            localStorage.setItem("uniId", id.toString())
         }
         router.push(
             isProf
@@ -76,16 +106,7 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                 : `/search/${id}/?professor=true&university=${uniname}`
         )
     }
-    const options = [
-        { label: "Green", value: "green" },
-        { label: "Green-Yellow", value: "greenyellow" },
-        { label: "Red", value: "red" },
-        { label: "Violet", value: "violet" },
-        { label: "Forest", value: "forest" },
-        { label: "Tangerine", value: "tangerine" },
-        { label: "Blush", value: "blush" },
-        { label: "Purple", value: "purple" },
-    ]
+
     if (isLoading) {
         return <p>loading...</p>
     }
@@ -103,10 +124,13 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                 icon={
                                     <ChevronDownIcon className="fill-grey-600 w-3 h-2" />
                                 }
+                                onChange={(e) =>
+                                    setSelectFacultyId(e.currentTarget.value)
+                                }
                             >
-                                {options.map((o, index) => (
-                                    <option value={o.value} key={index}>
-                                        {o.label}
+                                {faculties.map((faculty, index) => (
+                                    <option value={faculty.id} key={index}>
+                                        {faculty.name}
                                     </option>
                                 ))}
                             </Select>
@@ -124,6 +148,16 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                 {isProf ? (name ? name : slug) : slug}
                             </span>
                             {(!isProf || !name) && " in their name"}
+                            {profName && (
+                                <>
+                                    {" "}
+                                    with{" "}
+                                    <span className="font-bold">
+                                        {profName}
+                                    </span>{" "}
+                                    in their name
+                                </>
+                            )}
                         </Body>
                         <div
                             className={`h-10 w-full pl-14 pr-20 flex rounded-lg bg-cobalt ${
@@ -240,6 +274,16 @@ export const ShowingReview = ({ slug, isProf, name }: ShowingReviewProps) => {
                                 <span>
                                     lecturers at{" "}
                                     <span className="font-bold">{name}</span>
+                                    {profName && (
+                                        <>
+                                            {" "}
+                                            with{" "}
+                                            <span className="font-bold">
+                                                {profName}
+                                            </span>{" "}
+                                            in their name
+                                        </>
+                                    )}
                                 </span>
                             ) : (
                                 <span>

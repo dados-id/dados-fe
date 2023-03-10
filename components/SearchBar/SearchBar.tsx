@@ -17,16 +17,30 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
     const router = useRouter()
     let timer: NodeJS.Timeout
     const waitTime = 500
-    // let event
+
     useEffect(() => {
         if (inputVal) {
             if (isProf) {
-                axios
-                    .get(`/api/professor/landing/${inputVal}`)
-                    .then((response) => {
-                        setData(response.data)
-                        setIsDataLoaded(true)
-                    })
+                if (localStorage.getItem("uniId")) {
+                    // query by school and name
+                    axios
+                        .get(
+                            `/api/professor/search/${localStorage.getItem(
+                                "uniId"
+                            )}/1/asc/name/${inputVal}`
+                        )
+                        .then((response) => {
+                            setData(response.data)
+                            setIsDataLoaded(true)
+                        })
+                } else {
+                    axios
+                        .get(`/api/professor/landing/${inputVal}`)
+                        .then((response) => {
+                            setData(response.data)
+                            setIsDataLoaded(true)
+                        })
+                }
             } else {
                 axios
                     .get(`/api/university/landing/${inputVal}`)
@@ -78,6 +92,15 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                               localStorage.removeItem("uniId"),
                               localStorage.removeItem("uniName"))
                             : e.key === "Enter" &&
+                              localStorage.getItem("uniName")
+                            ? router.push(
+                                  `/search/${localStorage.getItem(
+                                      "uniId"
+                                  )}/?professor=true&university=${localStorage.getItem(
+                                      "uniName"
+                                  )}&name=${inputVal}`
+                              )
+                            : e.key === "Enter" &&
                               router.push(`/search/${inputVal}/?professor=true`)
                     }}
                     type="text"
@@ -101,7 +124,17 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                     </Link>
                 ) : (
                     inputVal && (
-                        <Link href={`/search/${inputVal}/?professor=true`}>
+                        <Link
+                            href={
+                                localStorage.getItem("uniName")
+                                    ? `/search/${localStorage.getItem(
+                                          "uniId"
+                                      )}/?professor=true&university=${localStorage.getItem(
+                                          "uniName"
+                                      )}&name=${inputVal}`
+                                    : `/search/${inputVal}/?professor=true`
+                            }
+                        >
                             <Button
                                 preset="primary"
                                 className="absolute top-2  right-6"
