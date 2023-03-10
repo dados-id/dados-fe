@@ -13,9 +13,9 @@ export const Navbar = () => {
                 {/* Logo */}
                 <div className="flex flex-row gap-10">
                     <Link href="/">
-                        <img src="logo.svg"/>
+                        <img src="logo.svg" />
                     </Link>
-                    
+
                     {/* Nav */}
                     <nav className="flex flex-row items-center justify-center gap-8">
                         <Header preset="h5">
@@ -32,7 +32,7 @@ export const Navbar = () => {
 
                 {/* User */}
                 <div>
-                    <LoginButton user={{name: "ste"}}/>
+                    <LoginButton user={{ name: "ste" }} />
                 </div>
             </div>
             {/* Mobile */}
@@ -40,7 +40,7 @@ export const Navbar = () => {
                 <div className="bg-white h-16 w-full flex flex-row items-center justify-between px-8">
                     {/* Logo */}
                     <Link href="/">
-                        <img src="logo.svg"/>
+                        <img src="logo.svg" />
                     </Link>
                     {/* User */}
                     <div>
@@ -84,8 +84,9 @@ export const Navbar = () => {
                     </div>
                 </div>
                 <div
-                    className={`${menuOpen ? "h-0 opacity-0" : "opacity-100 py-4"
-                        }
+                    className={`${
+                        menuOpen ? "h-0 opacity-0" : "opacity-100 py-4"
+                    }
            transition-height ease-in-out duration-500 px-8 bg-white`}
                 >
                     <nav className="flex flex-col gap-8">
@@ -101,7 +102,7 @@ export const Navbar = () => {
                     </nav>
                     {/* User */}
                     <div className="flex justify-end">
-                        <LoginButton user={{name: "ste"}}/>
+                        <LoginButton user={{ name: "ste" }} />
                     </div>
                 </div>
             </div>

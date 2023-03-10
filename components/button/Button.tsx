@@ -36,12 +36,9 @@ export const Button: React.FC<ButtonProps> = ({
               ? padding
               : "desktop:py-3 desktop:px-5 mobile:py-2 mobile:px-3"
       } 
-  
+      disabled:opacity-25
       ${className}`}
             {...props}
-            disabled={
-                Object.keys(BUTTON_PRESETS)[0] == "disabled" ? true : false
-            }
         >
             {leftIcon ? <>{leftIcon}</> : null}
             <Body preset="p2">{children}</Body>
