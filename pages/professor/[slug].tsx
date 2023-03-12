@@ -6,6 +6,7 @@ import TopTags from "./TopTags";
 import CoursesTaught from "./CoursesTaught";
 import RatingDistribution from "./RatingDistribution"
 import Reviews from "./Reviews"
+import { Body } from "@components";
 
 type ProfData = {
     "totalReview": number | undefined
@@ -65,6 +66,14 @@ const Professor = () => {
     return (
         <div className="flex flex-col items-center justify-center p-16">
             <div className="grid grid-cols-8 px-32 gap-12">
+                <div className="flex gap-2 items-center">
+                    <div className="p-1 bg-cobalt rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 fill-white">
+                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <Body preset="p2" className="text-cobalt font-semibold">Back</Body>
+                </div>
                 <Card profData={data} className="col-span-8"></Card>
                 <TopTags tags={profData?.top5Tags} className="col-span-3"></TopTags>
                 <RatingDistribution
@@ -73,11 +82,11 @@ const Professor = () => {
                     good={profData?.good}
                     ok={profData?.ok}
                     awful={profData?.awful}
-                    totalReview={profData?.totalReview} 
+                    totalReview={profData?.totalReview}
                     className="col-span-4 row-span-2"
-                    />
+                />
                 <CoursesTaught courses={profData?.courses} className="col-span-3"></CoursesTaught>
-                <Reviews allCourses={profData?.courses} reviews={[]} className="col-span-7"/>
+                <Reviews allCourses={profData?.courses} reviews={[]} className="col-span-7" />
             </div>
         </div>
     )
