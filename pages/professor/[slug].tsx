@@ -64,7 +64,6 @@ const Professor = () => {
     }
     return (
         <div className="flex flex-col items-center justify-center p-16">
-            {JSON.stringify(profData)}
             <div className="grid grid-cols-8 px-32 gap-12">
                 <Card profData={data} className="col-span-8"></Card>
                 <TopTags tags={profData?.top5Tags} className="col-span-3"></TopTags>
@@ -78,7 +77,7 @@ const Professor = () => {
                     className="col-span-4 row-span-2"
                     />
                 <CoursesTaught courses={profData?.courses} className="col-span-3"></CoursesTaught>
-                <Reviews reviews={[]} className="col-span-7"/>
+                <Reviews allCourses={profData?.courses} reviews={[]} className="col-span-7"/>
             </div>
         </div>
     )
