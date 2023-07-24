@@ -27,13 +27,13 @@ export const CustomListBox = ({
     return (
         <Listbox value={isProf} onChange={setIsProf}>
             <div className="relative mt-1 tablet:px-5 mobile:px-2">
-                <Listbox.Button className="relative w-full cursor-default rounded-lg py-4 tablet:pr-12 mobile:pr-6 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                    <span className="w-full">
+                <Listbox.Button className="relative w-full cursor-pointer rounded-lg py-4 tablet:pr-12 mobile:pr-6 text-left  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                    <span className="w-full cursor-pointer">
                         <Header
                             preset="h6"
                             className="flex items-center tablet:gap-2 mobile:gap-1 mobile:text-[0.620rem] tablet:text-[1rem]"
                         >
-                            Search by{" "}
+                            Berdasarkan {" "}
                             {isProf ? (
                                 <Lecturer className="tablet:scale-100 mobile:scale-75" />
                             ) : (
@@ -41,7 +41,7 @@ export const CustomListBox = ({
                             )}
                         </Header>
                     </span>
-                    <span className="pointer-events-none absolute inset-y-0  tablet:right-0 mobile:-right-3 flex items-center pr-2 ">
+                    <span className="cursor-pointer absolute inset-y-0  tablet:right-0 mobile:-right-3 flex items-center pr-2 ">
                         <ChevronDownIcon
                             className="tablet:h-8 tablet:w-8 mobile:w-5 mobile:h-5 text-gray-400"
                             aria-hidden="true"
@@ -68,14 +68,14 @@ export const CustomListBox = ({
                             {({ selected }) => (
                                 <>
                                     <div
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2 cursor-pointer"
                                         onClick={() => {
                                             onListBoxClick(), router.push("/")
                                         }}
                                     >
                                         <UniversityIcon className="tablet:scale-100 mobile:scale-75" />
                                         <Body preset="p2" className="font-bold">
-                                            School Name
+                                            Universitas
                                         </Body>
                                     </div>
                                 </>
@@ -94,12 +94,12 @@ export const CustomListBox = ({
                             {({ selected }) => (
                                 <>
                                     <div
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2 cursor-pointer"
                                         onClick={() => onListBoxClick()}
                                     >
                                         <Lecturer className="tablet:scale-100 mobile:scale-75" />
                                         <Body preset="p2" className="font-bold">
-                                            Lecturer Name
+                                            Dosen
                                         </Body>
                                     </div>
                                 </>

@@ -62,7 +62,8 @@ export default function Home() {
                             preset="p2"
                             className="underline text-cobalt font-bold"
                         >
-                            I want to find all lecturer from this school
+                            Cari semua dosen dari universitas ini
+                            {/* I want to find all lecturer from this school */}
                         </Body>
                     </Link>
                 </div>

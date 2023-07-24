@@ -105,9 +105,9 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                     }}
                     type="text"
                     className="w-full  outline-none text-xs tablet:text-lg placeholder:text-xs placeholder:tablet:text-lg placeholder:text-mariana font-hauora"
-                    placeholder={`Search ${
-                        isProf ? "Lecturer" : "University/College"
-                    } Name`}
+                    placeholder={`Cari Nama ${
+                        isProf ? "Dosen" : "Universitas"
+                    }`}
                 />
                 {inputVal && !isProf ? (
                     <Link href={`/search/${inputVal}`}>
@@ -119,7 +119,7 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                                     localStorage.removeItem("uniName")
                             }}
                         >
-                            See all
+                            Lihat semua
                         </Button>
                     </Link>
                 ) : (
@@ -139,7 +139,7 @@ export const SearchBar = ({ isProf, setIsProf }: SearchBarProps) => {
                                 preset="primary"
                                 className="absolute top-2  right-6"
                             >
-                                See all
+                                Lihat semua
                             </Button>
                         </Link>
                     )

@@ -118,7 +118,7 @@ export const ShowingReview = ({
                         {isProf && (
                             <Select
                                 name="faculty"
-                                placeholder="Filter by faculty"
+                                placeholder="Filter berdasarkan fakultas"
                                 color={"#909090"}
                                 _focus={{ color: "#000000" }}
                                 icon={
@@ -137,17 +137,17 @@ export const ShowingReview = ({
                         )}
 
                         <Body preset="p2" className="text-center py-5">
-                            Showing {data.length >= 5 ? 5 : maxData % 5} out of{" "}
+                            Menampilkan {data.length >= 5 ? 5 : maxData % 5} dari {" "}
                             {maxData}
                             {isProf
                                 ? name
-                                    ? " lecturers at"
-                                    : " professors with"
-                                : " schools with"}{" "}
+                                    ? " dosen di"
+                                    : " dosen dengan"
+                                : " universitas dengan"}{" "}
                             <span className="font-bold">
                                 {isProf ? (name ? name : slug) : slug}
                             </span>
-                            {(!isProf || !name) && " in their name"}
+                            {(!isProf || !name) && " dalam nama mereka"}
                             {profName && (
                                 <>
                                     {" "}
@@ -155,7 +155,7 @@ export const ShowingReview = ({
                                     <span className="font-bold">
                                         {profName}
                                     </span>{" "}
-                                    in their name
+                                    dalam nama mereka
                                 </>
                             )}
                         </Body>
@@ -184,7 +184,7 @@ export const ShowingReview = ({
                                     preset="p2"
                                     className="font-bold text-whipcream"
                                 >
-                                    Name
+                                    Nama
                                 </Body>
                             </div>
                             {isProf && (
@@ -269,34 +269,33 @@ export const ShowingReview = ({
                 ) : (
                     <div className="flex flex-col items-center justify-center w-full mb-52">
                         <Body preset="p2" className="">
-                            Sorry, we can’t find any{" "}
+                            Maaf kami tidak bisa menemukan {" "}
                             {isProf ? (
                                 <span>
-                                    lecturers at{" "}
-                                    <span className="font-bold">{name}</span>
                                     {profName && (
                                         <>
                                             {" "}
-                                            with{" "}
+                                            dosen dengan nama {" "}
                                             <span className="font-bold">
                                                 {profName}
                                             </span>{" "}
-                                            in their name
                                         </>
                                     )}
+                                    di {" "}
+                                    <span className="font-bold">{name}</span>
+                                    
                                 </span>
                             ) : (
                                 <span>
-                                    schools with{" "}
-                                    <span className="font-bold">{slug}</span> in
-                                    their name
+                                    universitas dengan nama {" "}
+                                    <span className="font-bold">{slug}</span>
                                 </span>
                             )}
                         </Body>
                         <NotFoundImage className="mt-10" />
                         <Link href="#">
                             <Button preset="primary" className="mt-7">
-                                {isProf ? "Add a lecturer" : "Add school"}
+                                {isProf ? "Tambah Dosen" : "Tambah Universitas"}
                             </Button>
                         </Link>
                     </div>

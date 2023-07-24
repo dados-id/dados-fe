@@ -13,9 +13,9 @@ export const LandingText = ({
         <div className="desktop:mt-[12%] tablet:mt-[25%] mobile:mt-[35%]">
             <div className="flex flex-col items-center">
                 <Body preset="p2">
-                    <span className="font-bold">200</span> lecturers in
-                    <span className="font-bold"> 40</span> universities are
-                    well-rated
+                    Lebih dari <span className="font-bold">200 </span> 
+                    dosen di <span className="font-bold"> 40 </span>
+                    universitas
                 </Body>
                 {isProfessor ? (
                     <>
@@ -24,12 +24,12 @@ export const LandingText = ({
                             className="flex tablet:flex-row mobile:flex-col items-center tablet:gap-2 mobile:gap-1 font-normal "
                         >
                             <div className="flex items-center tablet:gap-2 mobile:gap-1">
-                                Find your
-                                <span className="font-bold">lecturer</span>
+                                Cari
+                                <span className="font-bold">dosen</span>
                                 <LecturerIcon className="tablet:scale-100 mobile:scale-75" />
                             </div>
                             <div className="flex items-center tablet:gap-2 mobile:gap-1">
-                                {!universityName && "to get started"}
+                                {!universityName && "untuk mulai"}
                                 {!universityName && (
                                     <BoltIcon className="tablet:scale-100 mobile:scale-75" />
                                 )}
@@ -40,7 +40,7 @@ export const LandingText = ({
                                 preset="h2"
                                 className="flex items-center tablet:gap-2 mobile:gap-1 font-normal"
                             >
-                                at
+                                di
                                 <span className="font-bold">
                                     {universityName}
                                 </span>
@@ -55,13 +55,13 @@ export const LandingText = ({
                             className="flex tablet:flex-row mobile:flex-col items-center tablet:gap-2 font-normal "
                         >
                             <div className="flex items-center tablet:gap-2 mobile:gap-1">
-                                Enter your
-                                <span className="font-bold">school</span>
+                                Masukkan 
+                                <span className="font-bold">universitas</span>
                                 <SchoolIcon className="tablet:scale-100 mobile:scale-75" />
                             </div>
                             <div className="flex items-center tablet:gap-2 mobile:gap-1">
                                 {" "}
-                                to get started{" "}
+                                untuk mulai{" "}
                                 <BoltIcon className="tablet:scale-100 mobile:scale-75" />
                             </div>
                         </Header>

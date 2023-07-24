@@ -3,8 +3,10 @@ import { StarIcon } from "@heroicons/react/20/solid"
 export const RatingCard = ({
     rating,
     className,
+    preset
 }: {
     rating: number
+    preset: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "decorative"
     className?: string
 }) => {
     return (
@@ -15,12 +17,12 @@ export const RatingCard = ({
                     : rating >= 3
                     ? "bg-warning"
                     : "bg-danger"
-            } p-3 rounded-xl`}
+            } rounded-xl`}
         >
-            <Header preset="h4" className="text-mariana">
+            <Header preset={preset} className="text-mariana">
                 {rating}
             </Header>
-            <StarIcon className="fill-mariana w-5 h-5" />
+            <StarIcon className="fill-mariana w-10 h-10" />
         </div>
     )
 }

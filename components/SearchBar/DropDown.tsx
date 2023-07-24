@@ -30,14 +30,14 @@ export const Dropdown = ({
             {data.length > 0 ? (
                 isProf ? (
                     data.map((prof: Professor, index: number) => (
-                        <Link href={`/professor/${prof.id}`} key={index}>
+                        <Link href={`/professor/${prof.id}`} key={index} className="cursor-pointer">
                             <div
                                 className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center mobile"
                                 key={index}
                             >
                                 <div className="flex tablet:gap-2 mobile:gap-1 items-center">
                                     <Lecturer />
-                                    <Body preset="p2">{prof.firstName}</Body>
+                                    <Body preset="p2">{prof.firstName} {prof.lastName}</Body>
                                 </div>
                                 <Body preset="p2" className="ml-7">
                                     {prof.schoolName}, {prof.facultyName}
@@ -48,7 +48,7 @@ export const Dropdown = ({
                 ) : (
                     data.map((uni: University, index: number) => (
                         <div
-                            className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center "
+                            className="flex tablet:flex-row mobile:flex-col tablet:justify-between tablet:items-center  cursor-pointer"
                             key={index}
                             onClick={() => {
                                 localStorage.setItem("uniName", uni.name)
@@ -69,7 +69,9 @@ export const Dropdown = ({
             ) : (
                 <div className="flex justify-center items-center">
                     <Body preset="p2" className="text-danger">
-                        No matching results for {search}
+                        Hasil pencarian tidak ditemukan untuk <span className="font-bold">
+                                    {search}
+                                </span>
                     </Body>
                 </div>
             )}
