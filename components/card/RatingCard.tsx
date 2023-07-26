@@ -1,9 +1,15 @@
 import { Header } from "@components"
 import { StarIcon } from "@heroicons/react/20/solid"
-export const RatingCard = ({ rating }: { rating: number }) => {
+export const RatingCard = ({
+    rating,
+    className,
+}: {
+    rating: number
+    className?: string
+}) => {
     return (
         <div
-            className={`flex gap-1 items-center h-full ${
+            className={`flex gap-1 items-center  h-full ${className} ${
                 rating >= 4
                     ? "bg-success"
                     : rating >= 3
