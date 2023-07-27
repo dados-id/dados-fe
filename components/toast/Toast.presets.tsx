@@ -37,7 +37,7 @@ export const TOAST_PRESETS: ToastPresetProps = {
     success: {
         border: "rounded-lg",
         borderWidth: "border-2",
-        color: "bg-[#4AB261]/20 backdrop-blur-sm",
+        color: "bg-[#4AB261]/90 backdrop-blur-sm",
         text: "text-success",
         borderColor: "border-success",
         leftIcon: <CheckCircleIcon className="w-6 h-6" />,

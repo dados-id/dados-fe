@@ -1,5 +1,7 @@
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react"
 
+export type CheckBoxProps = {}
+
 export const CheckBox = () => {
     return (
         <Checkbox colorScheme="green" size="lg">
