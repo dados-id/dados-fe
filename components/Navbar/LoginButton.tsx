@@ -1,15 +1,13 @@
 import { Button } from "@components"
+import { useAuthContext } from "@context"
 
-interface userProps {
-    user: {
-        name: string;
-    }
-}
+// interface userProps {}
 
-const LoginButton = ({ user }: userProps) => {
+const LoginButton = ({ user }: any) => {
+    const { googleSignIn } = useAuthContext()
     return (
         <>
-            {user.name ?
+            {user.firstName ? (
                 <Button
                     preset="secondary"
                     className="flex flex-row"
@@ -30,9 +28,9 @@ const LoginButton = ({ user }: userProps) => {
                         </svg>
                     }
                 >
-                    Hi, {user.name}
+                    Hi, {user.firstName}
                 </Button>
-                :
+            ) : (
                 <Button
                     preset="primary"
                     className="flex flex-row"
@@ -52,13 +50,13 @@ const LoginButton = ({ user }: userProps) => {
                             />
                         </svg>
                     }
+                    onClick={() => googleSignIn()}
                 >
                     Login
                 </Button>
-            }
-
+            )}
         </>
     )
 }
 
-export default LoginButton;
+export default LoginButton

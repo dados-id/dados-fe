@@ -22,7 +22,7 @@ type AuthContextValue = {
 
 const AuthContext = createContext({} as AuthContextValue)
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<any>(null)
@@ -58,6 +58,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
             if (user) {
                 // Send token to your backend via HTTPS
                 // console.log(user.getIdToken(true))
+                console.log(user.accessToken)
                 sessionStorage.setItem("idToken", user.accessToken) // store token in session
                 // axios
                 //     .get(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {

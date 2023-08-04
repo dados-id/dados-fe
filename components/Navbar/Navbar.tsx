@@ -2,10 +2,11 @@ import Link from "next/link"
 import { Header, Body, Button } from "@components"
 import { useState } from "react"
 import LoginButton from "./LoginButton"
+import { useAuthContext } from "@context"
 
 export const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
-
+    const { user } = useAuthContext()
     return (
         <>
             {/* Desktop */}
@@ -32,7 +33,7 @@ export const Navbar = () => {
 
                 {/* User */}
                 <div>
-                    <LoginButton user={{ name: "ste" }} />
+                    <LoginButton user={user} />
                 </div>
             </div>
             {/* Mobile */}
@@ -102,7 +103,7 @@ export const Navbar = () => {
                     </nav>
                     {/* User */}
                     <div className="flex justify-end">
-                        <LoginButton user={{ name: "ste" }} />
+                        <LoginButton user={user} />
                     </div>
                 </div>
             </div>
