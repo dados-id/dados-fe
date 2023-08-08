@@ -143,12 +143,11 @@ export const SearchBar = ({ isProf, setIsProf, changeSchool, setChangeSchool }: 
                     <Link href={`/search/${inputVal}`}>
                         <Button
                             preset="primary"
-                            className="whitespace-nowrap mr-4 rounded-2xl"
+                            className="mr-4 whitespace-nowrap"
                             onClick={() => {
                                 localStorage.removeItem("uniId"),
                                     localStorage.removeItem("uniName")
                             }}
-                            padding="p-1"
                         >
                             Lihat semua
                         </Button>
