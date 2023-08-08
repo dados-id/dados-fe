@@ -1,4 +1,4 @@
-import { LandingText, Body, SearchBar } from "@components"
+import { LandingText, Body, SearchBar, Button } from "@components"
 import { useState, useEffect } from "react"
 import LandingPatternLeft from "@images/img_landing_pattern_left.svg"
 import LandingPatternRight from "@images/img_landing_pattern_right.svg"
@@ -12,6 +12,7 @@ import { useUniNameContext, useSetUniNameContext } from "@context"
 
 export default function Home() {
     const [isProf, setIsProf] = useState<boolean>(false)
+    const [changeSchool, setChangeSchool] = useState<boolean>(false)
     const router = useRouter()
 
     useEffect(() => {
@@ -49,9 +50,22 @@ export default function Home() {
                 )}
             </div>
 
-            <div className="desktop:mx-28 tablet:mx-11 mobile:mx-5 desktop:mt-4 tablet:mt-6 mobile:mt-3">
-                <SearchBar isProf={isProf} setIsProf={setIsProf} />
+            <div className="flex flex-col justify-center items-center desktop:mx-28 tablet:mx-11 mobile:mx-5 desktop:mt-4 tablet:mt-6 mobile:mt-3 ">
+                <div className="w-2/3 max-w-3xl">
+                <SearchBar isProf={isProf} setIsProf={setIsProf} changeSchool={changeSchool} setChangeSchool={setChangeSchool}/>
+                </div>
+                {isProf && 
+                <Button
+                    preset="link"
+                    className="right-6 underline"
+                    onClick={() => {
+                        localStorage.removeItem("uniName"), localStorage.removeItem("uniId"), setIsProf(false), setChangeSchool(true)
+                    }}
+                >
+                    Saya ingin mencari seorang dosen di universitas lain
+                </Button>}
             </div>
+            
             {isProf && router.query.university && (
                 <div className="flex justify-center items-center mt-5 gap-5">
                     <Link
@@ -62,7 +76,8 @@ export default function Home() {
                             preset="p2"
                             className="underline text-cobalt font-bold"
                         >
-                            I want to find all lecturer from this school
+                            Cari semua dosen dari universitas ini
+                            {/* I want to find all lecturer from this school */}
                         </Body>
                     </Link>
                 </div>

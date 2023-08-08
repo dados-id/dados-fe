@@ -2,3 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 @import "@fontsource/hauora-sans";
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 700;
+    src: url('/fonts/Hauora-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 800;
+    src: url('/fonts/Hauora-ExtraBold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 200;
+    src: url('/fonts/Hauora-ExtraLight.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 300;
+    src: url('/fonts/Hauora-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 500;
+    src: url('/fonts/Hauora-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 400;
+    src: url('/fonts/Hauora-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Hauora Sans';
+    font-weight: 600;
+    src: url('/fonts/Hauora-SemiBold.otf') format('opentype');
+}

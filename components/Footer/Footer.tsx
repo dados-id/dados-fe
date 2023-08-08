@@ -10,22 +10,20 @@ export const Footer = () => {
                 {/* Left part */}
                 <div className="w-3/5 hidden tablet:flex flex-row items-center justify-center gap-5">
                     <Logo className="w-40"/>
+                    {/* <Logo className="w-100 desktop:hidden"/> */}
                     <div className="">
-                        <Header preset="h4">dados</Header>
+                        <Header preset="h4" className="block">dados</Header>
+                        {/* <Header preset="h2" className="block desktop:hidden">dados</Header> */}
                         <Body preset="p2">
-                            A platform for assessing lecturer’s performance
-                            objectively with affirmations from students who related
-                            lecturers have taught—a platform from students for
-                            students.
+                        Sebuah platform untuk menilai kinerja dosen secara objektif dengan pengakuan dari mahasiswa yang pernah belajar dengan dosen tersebut. Sebuah platform dari mahasiswa untuk mahasiswa.
                         </Body>
                     </div>
-
                 </div>
                 {/* Right part */}
                 <div className="text-center tablet:text-right">
                     <Header preset="h2" className="block tablet:hidden">dados</Header>
                     <Header preset="h5" className="">
-                        © 2023 Dados Indonesia. All Rights Reserved
+                        © 2023 Dados Indonesia
                     </Header>
                 </div>
             </div>

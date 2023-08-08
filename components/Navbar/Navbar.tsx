@@ -20,13 +20,13 @@ export const Navbar = () => {
                     {/* Nav */}
                     <nav className="flex flex-row items-center justify-center gap-8">
                         <Header preset="h5">
-                            <Link href="/howto">How to Rate</Link>
+                            <Link href="/howto">Cara Menilai</Link>
                         </Header>
                         <Header preset="h5">
                             <Link href="/faq">FAQ</Link>
                         </Header>
                         <Header preset="h5">
-                            <Link href="/about">About Us</Link>
+                            <Link href="/about">Tentang Kami</Link>
                         </Header>
                     </nav>
                 </div>
@@ -92,13 +92,13 @@ export const Navbar = () => {
                 >
                     <nav className="flex flex-col gap-8">
                         <Header preset="h5">
-                            <Link href="/howto">How to Rate</Link>
+                            <Link href="/howto">Cara Menilai</Link>
                         </Header>
                         <Header preset="h5">
                             <Link href="/faq">FAQ</Link>
                         </Header>
                         <Header preset="h5">
-                            <Link href="/about">About Us</Link>
+                            <Link href="/about">Tentang Kami</Link>
                         </Header>
                     </nav>
                     {/* User */}
