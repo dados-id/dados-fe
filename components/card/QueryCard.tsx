@@ -39,8 +39,8 @@ export const QueryCard = ({
                     </Body>
                 </div>
             </div>
-            <div className="flex gap-4 items-center">
-                {isProf && <RatingCard rating={rating} preset="h4" />}
+            <div className="flex items-center">
+                {isProf && <RatingCard rating={rating} className="p-2" preset="h4" size="sm"/>}
                 {/* <div className="h-10 w-[1px] bg-grey-600"></div>
                 <div onClick={() => setIsBookmark(!isBookmark)}>
                     {isBookmark ? <BookmarkIcon /> : <BookmarkAddIcon />}

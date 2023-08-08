@@ -70,7 +70,7 @@ export const CustomListBox = ({
                                     <div
                                         className="flex items-center gap-2 cursor-pointer"
                                         onClick={() => {
-                                            onListBoxClick(), router.push("/")
+                                            onListBoxClick(), router.push("/"), localStorage.removeItem("uniName"), localStorage.removeItem("uniId")
                                         }}
                                     >
                                         <UniversityIcon className="tablet:scale-100 mobile:scale-75" />

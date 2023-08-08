@@ -17,6 +17,7 @@ export const Card = ({ profData, className }: CardProps) => {
                 <RatingCard
                     // rating="4.8"
                     preset="h2"
+                    size="lg"
                     rating={profData.rating}
                     className="col-span-2 justify-center"
                 />
@@ -24,7 +25,7 @@ export const Card = ({ profData, className }: CardProps) => {
                 <div className="flex flex-col items-center justify-center">
                     {/* <Header preset="decorative" className="font-bold">{profData.wouldTakeAgain}%</Header> */}
                     <Header preset="h3">86%</Header>
-                    <Body preset="p3" className="w-2/3">
+                    <Body preset="p3" className="w-full">
                         Ingin ambil lagi
                     </Body>
                 </div>

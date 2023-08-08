@@ -30,6 +30,7 @@ module.exports = {
                 600: "#909090",
                 400: "#D6D6D6",
                 200: "#E5E5E5",
+                100: "#f3f4f6",
             },
             violet: {
                 DEFAULT: "#9511FC",

@@ -3,15 +3,17 @@ import { StarIcon } from "@heroicons/react/20/solid"
 export const RatingCard = ({
     rating,
     className,
-    preset
+    preset,
+    size
 }: {
     rating: number
     preset: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "decorative"
-    className?: string
+    className?: string,
+    size: "sm" | "lg"
 }) => {
     return (
         <div
-            className={`flex gap-1 items-center  h-full ${className} ${
+            className={`flex gap-1 items-center ${className} ${
                 rating >= 4
                     ? "bg-success"
                     : rating >= 3
@@ -22,7 +24,7 @@ export const RatingCard = ({
             <Header preset={preset} className="text-mariana">
                 {rating}
             </Header>
-            <StarIcon className="fill-mariana w-10 h-10" />
+            <StarIcon className={`fill-mariana ${size === 'sm' ? 'w-5 h-5' : 'w-10 h-10'}`} />
         </div>
     )
 }

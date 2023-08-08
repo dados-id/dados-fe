@@ -160,7 +160,7 @@ export const ShowingReview = ({
                             )}
                         </Body>
                         <div
-                            className={`h-10 w-full pl-14 pr-20 flex rounded-lg bg-cobalt ${
+                            className={`h-10 w-full pl-14 pr-5 flex rounded-lg bg-cobalt ${
                                 !isProf ? "justify-center" : "justify-between"
                             }`}
                         >
@@ -213,7 +213,7 @@ export const ShowingReview = ({
                                 </div>
                             )}
                         </div>
-                        <div className="flex flex-col gap-5 mt-5">
+                        <div className={`${isProf ? "flex flex-col" : "grid grid-cols-2"} gap-5 mt-5`}>
                             {data?.map((d: any, index: number) =>
                                 isProf ? (
                                     <div
@@ -261,7 +261,7 @@ export const ShowingReview = ({
                             />
                             {Math.ceil(maxData / 5) === page && (
                                 <div className="mt-10">
-                                    <NoLecturerCard />
+                                    <NoLecturerCard isProf={isProf}/>
                                 </div>
                             )}
                         </div>
@@ -269,25 +269,31 @@ export const ShowingReview = ({
                 ) : (
                     <div className="flex flex-col items-center justify-center w-full mb-52">
                         <Body preset="p2" className="">
-                            Maaf kami tidak bisa menemukan {" "}
+                            {/* Maaf kami tidak bisa menemukan {" "} */}
                             {isProf ? (
                                 <span>
-                                    {profName && (
+                                    {profName ? (
                                         <>
                                             {" "}
-                                            dosen dengan nama {" "}
+                                            Maaf kami tidak bisa menemukan dosen dengan nama {" "}
                                             <span className="font-bold">
                                                 {profName}
                                             </span>{" "}
+                                            di
+                                        </>
+                                    ) : (
+                                        <>
+                                            {" "}
+                                            Maaf belum ada dosen di
+                                            {" "}
                                         </>
                                     )}
-                                    di {" "}
-                                    <span className="font-bold">{name}</span>
+                                    <span className="font-bold"> {name}</span>
                                     
                                 </span>
                             ) : (
                                 <span>
-                                    universitas dengan nama {" "}
+                                    Maaf kami tidak bisa menemukan universitas dengan nama {" "}
                                     <span className="font-bold">{slug}</span>
                                 </span>
                             )}
